@@ -28,7 +28,7 @@ Assuming you have cloned this repo, you simply need to navigate into the root di
 
 Put together the schematic outlined below:
 
-![](arduino/sketch.png)
+![](https://raw.githubusercontent.com/jamesmacfie/Alino/master/Arduino/sketch.png)
 
 Now open up the sketch in the `arduino` folder. Upload this to your Arduino device as you normally would (for me this is usually via USB).
 
