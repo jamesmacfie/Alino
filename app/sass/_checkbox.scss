@@ -1,0 +1,95 @@
+.toggle {
+	overflow: hidden;
+	display: inline-block;
+	width: $toggle-width;
+	background: $toggle-background-color;
+	padding: $toggle-padding;
+
+	:checked {
+		+ span {
+			left: 50%;
+
+			&:before {
+				content: attr(data-checked);
+				background-color: $control-active-color;
+			}
+		}
+	}
+
+	input {
+		position: absolute;
+		visibility: hidden;
+	}
+
+	span {
+		display: block;
+		font-size: $toggle-font-size;
+		left: 0%;
+		position: relative;
+		text-align: center;
+		text-transform: uppercase;
+
+		transition: left 50ms ease-out;
+		-webkit-transition: left 50ms ease-out;
+
+		&:before {
+			content: attr(data-unchecked);
+			display: block;
+			background-color: $control-background-color;
+			border-radius: $toggle-border-radius;
+			box-shadow: inset $toggle-inner-shadow-dimensions $toggle-inner-shadow;
+			color: $control-color;
+			width: 50%;
+		}
+	}
+}
+
+.checkbox {
+	color: $secondary-color;
+	padding-left: $checkbox-dimensions * 2;
+	position: relative;
+	text-transform: uppercase;
+
+	input {
+		-webkit-appearance: none;
+		background-color: $control-background-color;
+		border: $checkbox-border-width solid $input-border-color;
+		height: $checkbox-dimensions;
+		left: $checkbox-left-position;
+		outline: none;
+		position: absolute;
+		top: $checkbox-top-position;
+		visibility: visible;
+		width: $checkbox-dimensions;
+		z-index: 10;
+
+		&:checked {
+			&:before, &:after {
+				background-color: $control-active-color;
+				box-shadow: $checkbox-tick-shadow-dimensions $control-active-color;
+				content: '';
+				height: $checkbox-tick-height;
+				position: absolute;
+				z-index: 12;
+			}
+
+			&:before {
+				left: $checkbox-tick-small-left-position;
+				top: $checkbox-tick-small-left-position;
+				width: $checkbox-tick-small-length;
+				-webkit-transform: rotate($checkbox-tick-small-rotation);
+			}
+
+			&:after {
+				left: $checkbox-tick-long-left-position;
+				top: $checkbox-tick-long-top-position;
+				width: $checkbox-tick-long-length;
+				-webkit-transform: rotate($checkbox-tick-long-rotation);
+			}
+		}
+	}
+}
+
+.checkbox--icon {
+	margin-right: $container-padding;
+}

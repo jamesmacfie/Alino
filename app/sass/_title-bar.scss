@@ -1,0 +1,47 @@
+.titleContainer {
+	left: 0px;
+	position: fixed;
+	right: 0px;
+	z-index: 1;
+}
+
+.titleBar {
+	height: $title-bar-height;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	z-index: 0;
+}
+
+.titleBar-home {
+  background-color: $home-navigation-background-color;
+}
+
+.titleBar-settings {
+	background-color: $settings-navigation-background-color;
+}
+
+.titleBar-temperature {
+	background-color: $temperature-navigation-background-color;
+}
+
+.titleBar-timer {
+	background-color: $timer-navigation-background-color;
+}
+
+.pageTitle {
+	@extend %vertical-align;
+
+	color: $page-title-color;
+	font-size: $page-title-size;
+	font-family: $josefinsans;
+	line-height: $page-title-line-height;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.pageTitle-icon {
+  display: inline-block;
+  font-size: $page-title-icon-size;
+  margin: $page-title-icon-margin;
+}

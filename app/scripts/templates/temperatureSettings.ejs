@@ -1,0 +1,26 @@
+<div class="panel">
+	<h3 class="panelTitle"><i class="icon icon-settings panelTitle--icon"></i>Settings</h3>
+	<div class="form">
+		<label class="label">Desired temp (&#186;C)</label>
+		<input data-property="desired" class="input temperatureDesiredInput" type="number" value="<%= desired %>" />
+
+		<label class="label">Offset allowance (&#186;C)</label>
+		<input data-property="offsetAllowance" class="input temperatureOffsetInput" type="number" value="<%= offsetAllowance %>" />
+
+		<label class="checkbox timer--checkbox">
+			<input type="checkbox" class="temperatureNotificationInput" <% if (notification) { %>checked="checked"<% }%>><i class="icon icon-volume-up checkbox--icon"></i>Play sound
+		</label>
+		<label class="checkbox timer--checkbox">
+			<input type="checkbox" class="temperatureSMSInput" <% if (sms) { %>checked="checked"<% }%>><i class="icon icon-comment checkbox--icon"></i>Send text
+		</label>
+	</div>
+</div>
+<% if (notificationSent) { %>
+	<div class="panel">
+		<h3 class="panelTitle"><i class="icon icon-temperature panelTitle--icon"></i>A temperature notification has been sent</h3>
+		<p>Check below if you want to be notified the next time the desired temp has been reached</p>
+		<label class="checkbox timer--checkbox">
+			<input type="checkbox" class="js-sendNotification" <% if (!notificationSent) { %>checked="checked"<% }%>><i class="icon icon-comment checkbox--icon"></i>Notify me again
+		</label>
+	</div>
+<% } %>

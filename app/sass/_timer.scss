@@ -1,0 +1,46 @@
+.nextTime {
+	text-align: center;
+	font-family: $roboto;
+	font-size: $next-time-font-size;
+	font-weight: 200;
+	margin: 0px;
+	padding-bottom: $next-time-bottom-padding;
+	padding-top: $next-time-top-padding;
+}
+
+.timerTitle {
+	line-height: $timer-title-line-height;
+	font-family: $roboto;
+	font-weight: 200;
+	margin: 0;
+}
+
+.timerLabel {
+	margin-top: $timer-label-top-margin;
+}
+
+.timerLabel--label {
+	text-transform: uppercase;
+}
+
+.timerLabel--icon {
+	color: $secondary-color;
+	margin-right: $timer-chevron-right-margin;
+}
+
+.timerLabel--icon-trash {
+	color: $base-color;
+	font-size: $timer-trash-font-size;
+}
+
+.timerSettings {
+	overflow: hidden;
+}
+
+.timer--checkbox {
+	display: block;
+
+	&:not(:last-child) {
+		margin-bottom: $timer-checkbox-bottom-margin;
+	}
+}

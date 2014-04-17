@@ -1,0 +1,9 @@
+<div class="panel">
+	<h3 class="panelTitle left"><i class="icon icon-temperature panelTitle--icon"></i>Current temperature</h3>
+	<h3 class="panelTitle right">Desired: <%= desired %> &#186;C</h3>
+	<% if (current === null) { %>
+		<p class="currentTemp currentTemp-ok">--</p>
+	<% } else { %>
+		<p class="currentTemp currentTemp-<%= status %>"><%= current %> &#186;C</p>
+	<% } %>
+</div>

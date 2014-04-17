@@ -1,0 +1,164 @@
+/* Fonts */
+$sans-serif: sans-serif;
+$josefinsans: JosefinSans;
+$opensans: OpenSans;
+$roboto: Roboto;
+
+/* Base */
+$background-color: #2d2e30;
+$base-color: #fff;
+$secondary-color: #acacad;
+$base-font: $opensans;
+$base-weight: 100;
+
+$control-background-color: #525252;
+$control-active-color: #0099CC;
+$control-hover-color: #1F5366;
+$control-color: #fff;
+
+/* Navigation */
+$home-navigation-background-color: #3da7de;
+$temperature-navigation-background-color: #f94720;
+$timer-navigation-background-color: #ffba15;
+$settings-navigation-background-color: #61c227;
+
+$title-bar-height: 55px;
+
+$page-title-color: #fff;
+$page-title-size: 20px;
+$page-title-line-height: 25px;
+
+$page-title-icon-size: 22px;
+$page-title-icon-margin: 0 15px;
+
+$menu-icon-offset-left: -12px;
+$menu-icon-padding: 15px 50px 15px 0;
+$timer-icon-padding: 15px 30px 0px 20px;
+
+$navigation-width: 250px;
+$navigation-item-height: $title-bar-height;
+$navigation-transition-time: 0.1s;
+
+$navigation-background: #161617;
+$navigation-title-background: #232323;
+$navigation-item-background: #1e1e1e;
+$navigation-item-font-size: 18px;
+$navigation-item-height: $title-bar-height;
+$navigation-item-border-color: #161617;
+$navigation-item-icon-dimension: $navigation-item-height;
+$navigation-padding-left: 10px;
+$navigation-padding-top: 15px;
+
+$navigation-icon-size: $page-title-icon-size;
+$navigation-icon-margin: 15px 17px;
+
+/* Container */
+$container-padding: 10px;
+
+/* Panel */
+$panel-border-color: #0a0a0b;
+$panel-border-bottom-color: #09090a;
+$panel-border-width: 1px;
+$panel-border-bottom-width: 2px;
+$panel-padding: $container-padding;
+$panel-bottom-margin: $container-padding;
+
+$panel-title-icon-right-margin: $container-padding;
+
+/* Current Temp */
+$current-temp-font-size: 65px;
+$current-temp-bottom-padding: 30px;
+$current-temp-top-padding: 50px;
+
+$current-temp-hot-color: #f9472a;
+$current-temp-cold-color: #3da7de;
+$current-temp-ok-color: #61c227;
+
+/* Next time */
+$next-time-font-size: $current-temp-font-size;
+$next-time-bottom-padding: 30px;
+$next-time-top-padding: 50px;
+
+/* Forms */
+$form-bottom-margin: 20px;
+$form-top-margin: 20px;
+
+$label-font-size: 14px;
+$label-right-margin: 10px;
+
+$input-color: #fff;
+$input-height: 35px;
+$input-margin: 10px 0 30px 0;
+$input-font-size: 20px;
+$input-padding: 5px;
+$input-width: 100%;
+$input-background-color: lighten( $background-color, 5% );
+$input-border-color: lighten( $input-background-color, 20% );
+
+$select-container-right-position: 10px;
+$select-container-top-position: 20px;
+
+/* Button */
+$button-border-radius: 2px;
+$button-font-size: 16px;
+$button-line-height: 14px;
+$button-padding: 11px 36px;
+$button-bottom-margin: $container-padding;
+$button-inner-shadow-dimensions-from: 0 1px 0;
+$button-inner-shadow-from: rgba(255, 255, 255, 0.3);
+$button-inner-shadow-dimensions-to: 0 2px 3px;
+$button-inner-shadow-to: rgba(0, 0, 0, 0.3);
+
+
+/* Timer */
+$timer-title-line-height: 25px;
+$timer-chevron-right-margin: 10px;
+$timer-label-top-margin: 20px;
+$timer-trash-font-size: 20px;
+$timer-checkbox-bottom-margin: 12px;
+
+/* Toggle */
+$toggle-width: 90px;
+$toggle-background-color: $navigation-background;
+$toggle-padding: 1px;
+$toggle-inner-shadow: rgba(255, 255, 255, 0.3);
+$toggle-inner-shadow-dimensions:  0 1px 0;
+$toggle-border-radius: 2px;
+$toggle-font-size: 12px;
+
+/* Checkbox */
+$checkbox-dimensions: 14px;
+$checkbox-border-width: 1px;
+$checkbox-left-position: 0px;
+$checkbox-top-position: 1px;
+$checkbox-tick-shadow-dimensions: 0px 0px 2px 0px;
+$checkbox-tick-height: 3px;
+$checkbox-tick-small-length: 4px;
+$checkbox-tick-small-left-position: 2px;
+$checkbox-tick-small-top-position: 4px;
+$checkbox-tick-small-rotation: 45deg;
+$checkbox-tick-long-length: 14px;
+$checkbox-tick-long-left-position: 3px;
+$checkbox-tick-long-top-position: 0px;
+$checkbox-tick-long-rotation: -45deg;
+
+/* Popup */
+$popup-overlay-zindex: 100;
+$popup-overlay-background-color: #000;
+$popup-overlay-opacity: 0.7;
+$popup-border-radius: 2px;
+$popup-zindex: $popup-overlay-zindex + 1;
+$popup-width: 300px;
+$popup-inner-shadow-dimensions-from: $button-inner-shadow-dimensions-from;
+$popup-inner-shadow-from: $button-inner-shadow-from;
+$popup-inner-shadow-dimensions-to: $button-inner-shadow-dimensions-to;
+$popup-inner-shadow-to: $button-inner-shadow-to;
+$popup-title-margin: $container-padding 0 0;
+$popup-title-padding: 0 0 $container-padding $container-padding;
+$popup-title-color: $control-active-color;
+$popup-font-size: 24px;
+$popup-border-width: 2px;
+$popup-border-color: $popup-title-color;
+$popup-inset-padding: $container-padding;
+$popup-button-margin: 0px;
+$popup-button-padding: 15px 36px;

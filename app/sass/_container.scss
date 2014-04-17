@@ -1,0 +1,15 @@
+.container {
+	height: 100%;
+	padding: $container-padding;
+	padding-top: $title-bar-height + $container-padding;
+	overflow-y: scroll;
+	position: relative;
+}
+
+.overlay {
+	bottom: 0px;
+	left: 0px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}

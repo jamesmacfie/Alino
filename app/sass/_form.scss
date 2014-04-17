@@ -1,0 +1,49 @@
+.form {
+  margin: $form-top-margin 0 $form-bottom-margin 0;
+}
+
+.label {
+  display: block;
+  color: $secondary-color;
+  margin-right: $label-right-margin;
+  text-transform: uppercase
+}
+
+%input {
+  background-color: $input-background-color;
+  border: 1px solid $input-border-color;
+  color: $input-color;
+  font-size: $input-font-size;
+  height: $input-height;
+  margin: $input-margin;
+  outline: none;
+  padding: $input-padding;
+  width: $input-width;
+}
+
+.input {
+  @extend %input;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+.selectContainer {
+  position: relative;
+
+  &:before {
+    content: "\f107";
+    font-family: 'FontAwesome';
+    position: absolute;
+    right: $select-container-right-position;
+    top: $select-container-top-position;
+  }
+}
+
+.select {
+  @extend %input;
+
+  -webkit-appearance: none;
+  border-radius: 0;
+}

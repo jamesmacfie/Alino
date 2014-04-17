@@ -1,0 +1,43 @@
+<% for(var i=0; i<timers.length; i++) {
+	var currentTimer = timers[i]; %>
+	<div class="panel">
+		<div class="timer" data-id="<%= currentTimer.get('id') %>">
+			<div class="clearfix">
+				<h1 class="timerTitle left js-starttime"><%= currentTimer.get('startValue') %>:00</h1>
+				<label class="toggle right">
+					<input type="checkbox" class="timerActiveInput" <% if (currentTimer.get('active')) { %>checked="checked"<% }%>>
+					<span data-unchecked="Off" data-checked="On"></span>
+				</label>
+			</div>
+			<div class="timerLabel">
+				<i class="js-deleteTimer icon icon-trash timerLabel--icon-trash right"></i>
+				<div class="timerSettings js-timerSettingsClosed" <% if (currentTimer.get('uiOpen')) { %>style="height: 0px;"<% } %>>
+					<div class="js-toggleTimerSettings">
+						<i class="icon icon-angle-down timerLabel--icon"></i>
+						<span class="timerLabel--label"><%= currentTimer.get('label') %><span>
+					</div>
+				</div>
+				<div class="timerSettings js-timerSettingsOpen" <% if (!currentTimer.get('uiOpen')) { %>style="height: 0px;"<% } %>>
+					<div>
+						<div class="js-toggleTimerSettings">
+							<i class="icon icon-angle-up timerLabel--icon"></i>
+							<label class="label">Label</label>
+						</div>
+						<input type="text" class="input timerLabelInput" value="<%= currentTimer.get('label') %>" />
+
+						<label class="label">Time (minutes)</label>
+						<input type="text" class="input timerStartValueInput" value="<%= currentTimer.get('startValue') %>" />
+
+						<label class="checkbox timer--checkbox">
+							<input type="checkbox" class="timerNotificationInput" <% if (currentTimer.get('notification')) { %>checked="checked"<% }%>><i class="icon icon-volume-up checkbox--icon"></i>Play sound
+						</label>
+						<label class="checkbox timer--checkbox">
+							<input type="checkbox" class="timerSMSInput" <% if (currentTimer.get('sms')) { %>checked="checked"<% }%>><i class="icon icon-comment checkbox--icon"></i>Send text
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% } %>
+<button type="submit" class="js-addNewTimer">Add new timer</button>

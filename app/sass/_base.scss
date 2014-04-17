@@ -1,0 +1,52 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	background-color: $background-color;
+	color: $base-color;
+	font-family: $base-font;
+	font-weight: $base-weight;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	font-weight: $base-weight;
+}
+
+a {
+	color: $secondary-color;
+	text-decoration: none;
+}
+
+button {
+	background: $control-background-color;
+	border: 0;
+	color: $control-color;
+	border-radius: $button-border-radius;
+	margin-bottom: $button-bottom-margin;
+	padding: $button-padding;
+	font-family: $roboto;
+	font-size: $button-font-size;
+	font-weight: 200;
+	line-height: $button-line-height;
+	outline: none;
+	vertical-align: middle;
+
+	box-shadow: inset $button-inner-shadow-dimensions-from $button-inner-shadow-from, $button-inner-shadow-dimensions-to rgba(0, 0, 0, 0.5)$button-inner-shadow-to;
+	-webkit-box-shadow: inset $button-inner-shadow-dimensions-from $button-inner-shadow-from, $button-inner-shadow-dimensions-to $button-inner-shadow-to;
+
+	&:active {
+		background: $control-active-color;
+	}
+
+}

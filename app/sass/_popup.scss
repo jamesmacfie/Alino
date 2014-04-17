@@ -1,0 +1,51 @@
+.overlay-popup {
+	background-color: $popup-overlay-background-color;
+	opacity: $popup-overlay-opacity;
+	z-index: $popup-overlay-zindex;
+}
+
+.popup {
+	background-color: $background-color;
+	border-radius: $popup-border-radius;
+	position: absolute;
+	z-index: $popup-zindex;
+	width: $popup-width;
+
+	box-shadow: inset $popup-inner-shadow-dimensions-from $popup-inner-shadow-from, $popup-inner-shadow-dimensions-to rgba(0, 0, 0, 0.5)$popup-inner-shadow-to;
+	-webkit-box-shadow: inset $popup-inner-shadow-dimensions-from $popup-inner-shadow-from, $popup-inner-shadow-dimensions-to $popup-inner-shadow-to;
+}
+
+.popup--title {
+	border-bottom: $popup-border-width solid $popup-border-color;
+	color: $popup-title-color;
+	font-family: $roboto;
+	font-size: $popup-font-size;
+	margin: $popup-title-margin;
+	padding: $popup-title-padding;
+}
+
+.popup--inset {
+	padding: $popup-inset-padding * 2 $popup-inset-padding;
+}
+.popup--message {
+	margin: 0;
+}
+
+.popup--buttons {
+	border-top: 1px solid $popup-inner-shadow-from;
+}
+
+.popup--button {
+	background-color: $background-color;;
+	border-radius: 0;
+	float: left;
+	margin: $popup-button-margin;
+	padding: $popup-button-padding;
+	width: 50%;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+
+	&:first-of-type {
+		border-right: 1px solid $popup-inner-shadow-from;
+	}
+}
