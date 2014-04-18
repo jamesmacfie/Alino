@@ -324,7 +324,7 @@ module.exports = function (grunt) {
         options: {                      // Options
           stdout: true
         },
-        command: 'cd brewduino && cordova build && cordova run'
+        command: 'cd cordova && cordova build && cordova run'
       }
     }
 	});

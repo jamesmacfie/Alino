@@ -56,6 +56,8 @@
 /Users/james/Sites/Alino/cordova/platforms/android/assets/www/plugins/org.apache.cordova.plugin.sms/www \
 /Users/james/Sites/Alino/cordova/platforms/android/assets/www/plugins/org.apache.cordova.plugin.sms/www/sms.js \
 /Users/james/Sites/Alino/cordova/platforms/android/assets/www/scripts/4094ba82.main.js \
+/Users/james/Sites/Alino/cordova/platforms/android/assets/www/scripts/main.js \
 /Users/james/Sites/Alino/cordova/platforms/android/assets/www/sounds/1.mp3 \
 /Users/james/Sites/Alino/cordova/platforms/android/assets/www/styles/7a135d9d.main.css \
+/Users/james/Sites/Alino/cordova/platforms/android/assets/www/styles/main.css \
 /Users/james/Sites/Alino/cordova/platforms/android/bin/AndroidManifest.xml \
