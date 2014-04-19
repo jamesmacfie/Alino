@@ -6,6 +6,7 @@
 /Users/james/Sites/Alino/cordova/platforms/android/bin/classes/com/jamesmacfie/alino/R$string.class \
 /Users/james/Sites/Alino/cordova/platforms/android/bin/classes/com/jamesmacfie/alino/R$xml.class \
 /Users/james/Sites/Alino/cordova/platforms/android/bin/classes/com/jamesmacfie/alino/R.class \
+/Users/james/Sites/Alino/cordova/platforms/android/bin/classes/com/jamiestarke/webviewdebug/WebViewDebug.class \
 /Users/james/Sites/Alino/cordova/platforms/android/bin/classes/com/megster/cordova/BluetoothSerial$1.class \
 /Users/james/Sites/Alino/cordova/platforms/android/bin/classes/com/megster/cordova/BluetoothSerial.class \
 /Users/james/Sites/Alino/cordova/platforms/android/bin/classes/com/megster/cordova/BluetoothSerialService$AcceptThread.class \

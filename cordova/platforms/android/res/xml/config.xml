@@ -5,6 +5,10 @@
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
+    <feature name="WebViewDebug">
+        <param name="android-package" value="com.jamiestarke.webviewdebug.WebViewDebug" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="BluetoothSerial">
         <param name="android-package" value="com.megster.cordova.BluetoothSerial" />
     </feature>
