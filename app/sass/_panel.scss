@@ -8,11 +8,27 @@
   width: 100%;
 }
 
+.panel-centered {
+  text-align: center;
+}
+
+.panel-borderless {
+  border: none;
+}
+
+.panel-padless {
+  padding: 0;
+}
+
 .panelTitle {
   color: $secondary-color;
   font-size: 12px;
   margin: 0;
   text-transform: uppercase;
+}
+
+.panelTitle-large {
+  font-size: 16px;
 }
 
 .panelTitle--icon {

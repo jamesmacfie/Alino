@@ -15057,6 +15057,16 @@ __p += '\n\n</div>\n';
 return __p
 };
 
+this["JST"]["app/scripts/templates/homeDefault.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="panel panel-centered">\n  <p class="panelTitle panelTitle-large">It doesn\'t look like you\'re brewing anything. Would you like to start?</p>\n</div>\n\n<div class="panel panel-centered panel-borderless">\n  <button class="button-large js-start-brew">Let\'s brew</button>\n<div>\n';
+
+}
+return __p
+};
+
 this["JST"]["app/scripts/templates/homeHistoryTemperature.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
@@ -15113,6 +15123,26 @@ __p += '<div class="overlay overlay-popup"></div>\n<div class="popup" style="dis
 return __p
 };
 
+this["JST"]["app/scripts/templates/recipes.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+
+ for(var i=0;i<recipes.length;i++) {
+      var recipe = recipes[i]; ;
+__p += '\n  <div class="recipeStep">\n    <div class="clearfix">\n      <i class="js-deleteRecipe icon icon-trash recipeStep--rightIcon right"></i>\n      <p class="recipeStep--title js-recipeEdit">' +
+((__t = ( recipe.get('name') )) == null ? '' : __t) +
+' <i class="icon icon-pencil"></i></p>\n      <p class="recipeStep--description">' +
+((__t = ( recipe.get('description') )) == null ? '' : __t) +
+'</p>\n    </div>\n  </div>\n';
+ } ;
+__p += '\n';
+
+}
+return __p
+};
+
 this["JST"]["app/scripts/templates/settings.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
@@ -15152,6 +15182,48 @@ __p += '\n\t\t\t</selected>\n\t\t';
 __p += '\n\t\t\t<p>No bluetooth devices detected</p>\n\t\t';
  };
 __p += '\n\t</div>\n</div>\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/startBrew.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<div class="js-startBrewHolder">\n  <div class="panel" class="js-startBrewRecipeSelect">\n    <p>Which brew recipe are you following today?</p>\n    <select data-property="recipe" class="select js-recipeDropdown">\n      <option value="">--</option>\n      ';
+ for(var i=0;i<recipes.length;i++) {
+            var recipe = recipes[i]; ;
+__p += '\n        <option value="' +
+((__t = ( recipe.get('id') )) == null ? '' : __t) +
+'">' +
+((__t = ( recipe.get('name') )) == null ? '' : __t) +
+'</option>\n      ';
+ } ;
+__p += '\n    </select>\n  </div>\n  <div id="startBrewRecipeDetails" class="panel panel-padless panel-borderless js-startBrewRecipeDetails" style="display: none"></div>\n</div>\n';
+
+}
+return __p
+};
+
+this["JST"]["app/scripts/templates/startBrewRecipeSteps.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '  ';
+ for(var i=0;i<steps.length;i++) {
+        var step = steps[i]; ;
+__p += '\n    <div class="recipeStep">\n      <div class="clearfix">\n        <div class="recipeStep--metaHolder">\n          <div class="recipeStep--meta">\n            <i class="icon icon-time recipeStep--meta--icon"></i>\n            <span class="recipeStep--meta--text"> 60:00</span>\n          </div>\n          <div class="recipeStep--meta">\n            <i class="icon icon-beaker recipeStep--meta--icon"></i>\n            <span> 75.6 .C</span>\n          </div>\n          <span class="recipeStep--meta recipeStep--meta--icon"><i class="icon icon-volume-up"></i> </span>\n          <span class="recipeStep--meta recipeStep--meta--icon"><i class="icon icon-envelope"></i> </span>\n        </div>\n        <p class="recipeStep--title"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText">' +
+((__t = ( i )) == null ? '' : __t) +
+'</span></span>' +
+((__t = ( step.name )) == null ? '' : __t) +
+'</p>\n        <p class="recipeStep--description">' +
+((__t = ( step.description )) == null ? '' : __t) +
+'</p>\n      </div>\n    </div>\n  ';
+ } ;
+__p += '\n';
 
 }
 return __p
@@ -17230,6 +17302,7 @@ define('views/home',[
 ], function ($, _, Backbone, JST, Chart, Temperature, Timers) {
 	var HomeView = Backbone.View.extend({
 		el: '#homeContainer',
+		defaultTemplate: JST['app/scripts/templates/homeDefault.ejs'],
 		currentTemperatureEl: '#temperatureCurrent',
 		currentTemperatureTemplate: JST['app/scripts/templates/homeCurrentTemperature.ejs'],
 		historyTemperatureEl: '#temperatureHistory',
@@ -17238,7 +17311,8 @@ define('views/home',[
 		timerTemplate: JST['app/scripts/templates/homeTimer.ejs'],
 		events: {
 			'click .js-toggle-timer': 'onToggleTimerClick',
-			'click .js-reset-timer': 'onResetTimerClick'
+			'click .js-reset-timer': 'onResetTimerClick',
+			'click .js-start-brew': 'onStartBrewClick'
 		},
 		initialize: function() {
 			this.bindEvents();
@@ -17266,11 +17340,16 @@ define('views/home',[
 			this.listenTo(Timers, 'change', this.onTimerChange);
 		},
 		render: function() {
-			this.resetUI();
-			this.renderCurrentTemperature();
-			this.renderHistoryTemperature();
-			this.renderTimer();
+			this.renderDefault();
+			//this.resetUI();
+			//this.renderCurrentTemperature();
+			//this.renderHistoryTemperature();
+			//this.renderTimer();
 		},
+		renderDefault: function() {
+			this.$el.html(this.defaultTemplate());
+		},
+
 		renderCurrentTemperature: function() {
 			$(this.currentTemperatureEl).html(this.currentTemperatureTemplate({
 				current: Temperature.get('current'),
@@ -17330,6 +17409,9 @@ define('views/home',[
 			};
 
 			new Chart(document.getElementById('canvas').getContext('2d')).Line(lineChartData, config);
+		},
+		onStartBrewClick: function() {
+			Backbone.history.navigate('start', {trigger: true, replace: true});
 		},
 		onTimerChange: function() {
 			if (Backbone.history.fragment === '') {
@@ -17687,6 +17769,213 @@ define('views/timer',[
 	return TimerView;
 });
 
+/*global define*/
+
+define('models/recipe',[
+		'underscore',
+		'backbone',
+], function (_, Backbone) {
+		'use strict';
+
+		var RecipeModel = Backbone.Model.extend({
+			defaults: {
+				name: true,
+				steps: []
+			}
+		});
+
+		return RecipeModel;
+});
+
+/*global define*/
+
+define('collections/recipes',[
+		'underscore',
+		'backbone',
+		'models/recipe',
+		'modules/helpers'
+], function (_, Backbone, Recipe, Helpers) {
+		'use strict';
+
+		var RecipeCollection = Backbone.Collection.extend({
+			//model: Recipe,
+			initialize: function() {
+
+				//this.loadFromLocalStorage();
+			},
+			loadFromLocalStorage: function() {
+				var local = localStorage.getItem('bRecipes');
+				if (local === 'undefined') {
+					return;
+				}
+
+				var data = JSON.parse(local);
+				if (data) {
+					_.each(data, function(value) {
+						var setObj = {};
+						_.each(value, function(value, key) {
+							setObj[key] = value;
+						}.bind(this));
+
+						this.add(setObj, {
+							silent: true
+						});
+
+					}.bind(this));
+				}
+			},
+			saveToLocalStorage: function() {
+				var objectToSave = [];
+
+				_.each(this.models, function(model) {
+					objectToSave.push(model.attributes);
+				});
+
+				localStorage.setItem('bRecipes', JSON.stringify(objectToSave));
+			}
+		});
+
+		return new RecipeCollection([
+			{
+				id: 1,
+				name: 'Light body, triple hop',
+				description: 'A single infusion mash at 64.4 C. Includes mash out and sparge. 90 minute boil with hop additions at 90 minutes, 20 minutes, and flame out.',
+				steps: [
+					{
+						name: 'Sachirification Rest',
+						description: 'Ultricies Venenatis Parturient Commodo Vulputate',
+						targetTemp: 64.4,
+						time: 60
+					},
+					{
+						name: 'Mash out',
+						description: 'Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper.',
+						targetTemp: 75.6,
+						time: 10
+					},
+					{
+						name: 'Sparge',
+						description: 'Ipsum Nullam Sem',
+						targetTemp: 75.6,
+						time: 10
+					},
+					{
+						name: 'Start boil',
+						description: '',
+						time: 90
+					},
+					{
+						name: 'Add bittering hops',
+						description: 'Add bittering hops at 60 minutes.',
+						time: 60
+					},
+					{
+						name: 'Add Flavor Hops',
+						description: 'Add flavor hops at 10 minutes. If you are adding irish moss or yeast nutrient then add these to the boil here too. If you are using an immersion chiller, insert the chiller into the boil no later than now.',
+						time: 10
+					},
+					{
+						name: 'Flame Out',
+						description: 'Add arome hops and turn off the heat.',
+						time: 0
+					}
+				]
+			},
+			{
+				id: 2,
+				name: 'Medium body, single hop',
+				description: 'A single infusion mash at 66.7 C. Includes mash out and sparge. 90 minute boil with ha single hop addition at 60 minutes.',
+				steps: []
+			},
+			{
+				id: 3,
+				name: 'Light body, single hop',
+				description: 'A single infusion mash at 64.4 C. Includes mash out and sparge. 60 minute boil with ha single hop addition at 60 minutes.',
+				steps: []
+			},
+		]);
+});
+
+'use strict';
+
+define('views/startBrew',[
+  'jquery',
+  'underscore',
+  'backbone',
+  'templates',
+  'collections/recipes',
+], function ($, _, Backbone, JST, Recipes) {
+  var TitleBarView = Backbone.View.extend({
+    el: '#startBrewContainer',
+    template: JST['app/scripts/templates/startBrew.ejs'],
+    detailEl: '#startBrewRecipeDetails',
+    detailTemplate: JST['app/scripts/templates/startBrewRecipeSteps.ejs'],
+    events: {
+      'change .js-recipeDropdown': 'onRecipeDropdownChangeHandler'
+    },
+    initialize: function() {
+      
+    },
+    render: function() {
+      this.$el.html(this.template({
+        recipes: Recipes.models
+      }));
+    },
+    clearRecipeStepPanel: function() {
+      var $panel = $(this.detailEl);
+
+      $panel.hide();
+      $panel.html('');
+    },
+    onRecipeDropdownChangeHandler: function(event) {
+      var $target = $(event.target),
+        value = $target.val(),
+        $recipePanel = $(this.detailEl),
+        recipe;
+
+      this.clearRecipeStepPanel();
+
+      if (!value) {
+        return;
+      }
+
+      recipe = Recipes.get(value);
+      $recipePanel.html(this.detailTemplate({
+        steps: recipe.get('steps')
+      }));
+      $recipePanel.show();
+    }
+  });
+
+  return TitleBarView;
+});
+
+'use strict';
+
+define('views/recipes',[
+	'jquery',
+	'underscore',
+	'backbone',
+	'templates',
+	'collections/recipes',
+], function ($, _, Backbone, JST, Recipes) {
+	var RecipeView = Backbone.View.extend({
+		el: '#recipesContainer',
+		template: JST['app/scripts/templates/recipes.ejs'],
+		events: {
+		},
+		initialize: function() {
+		},
+		render: function() {
+			this.$el.html(this.template({
+				recipes: Recipes.models
+			}));
+		}
+	});
+
+	return RecipeView;
+});
+
 'use strict';
 
 define('router',[
@@ -17700,13 +17989,18 @@ define('router',[
 	'views/settings',
 	'views/temperature',
 	'views/timer',
-], function($, _, Backbone, SettingsModel, TemperatureModel, ContainerView, HomeView, SettingsView, TemperatureView, TimerView){
+	'views/startBrew',
+	'views/recipes',
+], function($, _, Backbone, SettingsModel, TemperatureModel, ContainerView, HomeView, SettingsView, TemperatureView, TimerView, StartBrewView, RecipesView){
 	var AppRouter = Backbone.Router.extend({
 		routes: {
-			'': 'home',
+			// TEMP '': 'home',
+			'': 'startBrew',
 			'settings': 'settings',
 			'temperature': 'temperature',
-			'timer': 'timer'
+			'timer': 'timer',
+			'recipes': 'recipes'
+			//'start': 'startBrew'
 		}
 	});
 
@@ -17720,7 +18014,9 @@ define('router',[
 				model: TemperatureModel
 			}),
 			timerView = new TimerView(),
-			containerView = new ContainerView();
+			containerView = new ContainerView(),
+			startBrewView = new StartBrewView(),
+			recipesView = new RecipesView();
 
 		appRouter.on('route:home', function(){
 			containerView.changeView(homeView);
@@ -17737,6 +18033,16 @@ define('router',[
 		appRouter.on('route:timer', function(){
 			containerView.changeView(timerView);
 		});
+
+		appRouter.on('route:startBrew', function(){
+			containerView.changeView(startBrewView);
+		});
+
+	appRouter.on('route:recipes', function(){
+		containerView.changeView(recipesView);
+	});
+
+		Backbone.router = appRouter;
 
 		Backbone.history.start({
 			pushState: true
@@ -17808,13 +18114,13 @@ require.config({
 		}
 });
 
+//REINSTATE FOR MOBILE
 document.addEventListener('deviceready', function() {
-	window.FastClick.attach(document.body);
+	//window.FastClick.attach(document.body);
 	require(['app'], function (App) {
 			App.initialize();
 	});
 }, true);
-
 
 define("main", function(){});
 }());

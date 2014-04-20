@@ -1,0 +1,22 @@
+  <% for(var i=0;i<steps.length;i++) {
+        var step = steps[i]; %>
+    <div class="recipeStep">
+      <div class="clearfix">
+        <div class="recipeStep--metaHolder">
+          <div class="recipeStep--meta">
+            <i class="icon icon-time recipeStep--meta--icon"></i>
+            <span class="recipeStep--meta--text"> 60:00</span>
+          </div>
+          <div class="recipeStep--meta">
+            <i class="icon icon-beaker recipeStep--meta--icon"></i>
+            <span> 75.6 .C</span>
+          </div>
+          <span class="recipeStep--meta recipeStep--meta--icon"><i class="icon icon-volume-up"></i> </span>
+          <span class="recipeStep--meta recipeStep--meta--icon"><i class="icon icon-envelope"></i> </span>
+        </div>
+        <p class="recipeStep--title"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText"><%= i %></span></span><%= step.group.get('name') %>: <%= step.name %></p>
+        <p class="recipeStep--description"><%= step.description %></p>
+      </div>
+    </div>
+  <% } %>
+  <button type="submit" class="button-spaced js-start-brew"><i class="icon icon-play"></i> Start</button>

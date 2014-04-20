@@ -23,6 +23,9 @@
 						<a class="navigationItem navigationItem-link js-toggle-menu" href="/temperature">
 							<i class="navigationIcon navigationIcon-temperature icon icon-temperature"></i>Temperature
 						</a>
+						<a class="navigationItem navigationItem-link js-toggle-menu" href="/recipes">
+							<i class="navigationIcon navigationIcon-recipes icon icon-beer"></i>Recipes
+						</a>
 						<a class="navigationItem navigationItem-link js-toggle-menu" href="/timer">
 							<i class="navigationIcon navigationIcon-timer icon icon-timer"></i>Timers
 						</a>
@@ -36,6 +39,8 @@
 				<div class="container" id="temperatureContainer"></div>
 				<div class="container" id="timerContainer"></div>
 				<div class="container" id="settingsContainer"></div>
+				<div class="container" id="startBrewContainer"></div>
+				<div class="container" id="recipesContainer"></div>
 
 				<audio id="soundOne" src="sounds/1.mp3"></audio>
 				<audio id="soundTwo" src="sounds/1.mp3"></audio>
@@ -43,8 +48,9 @@
 				<audio id="soundFour" src="sounds/1.mp3"></audio>
 				<audio id="soundFive" src="sounds/1.mp3"></audio>
 
+				<!-- REINSTATE FOR MOBILE
 				<script src="cordova.js"></script>
-				<script src="scripts/fastclick.js"></script>
+				<script src="scripts/fastclick.js"></script> -->
 				<!-- build:js scripts/main.js -->
 				<script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
 				<!-- endbuild -->

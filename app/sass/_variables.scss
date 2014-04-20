@@ -21,6 +21,7 @@ $home-navigation-background-color: #3da7de;
 $temperature-navigation-background-color: #f94720;
 $timer-navigation-background-color: #ffba15;
 $settings-navigation-background-color: #61c227;
+$recipes-navigation-background-color: #cd1560;
 
 $title-bar-height: 55px;
 
@@ -162,3 +163,9 @@ $popup-border-color: $popup-title-color;
 $popup-inset-padding: $container-padding;
 $popup-button-margin: 0px;
 $popup-button-padding: 15px 36px;
+
+/* Recipe Steps */
+$recipe-step-border-color: #444;
+$recipe-step-border-color-darker: darken($recipe-step-border-color, 20%);
+$recipe-step-margin: 10px;
+$recipe-step-meta-icon-size: 18px;

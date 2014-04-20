@@ -1,0 +1,13 @@
+<div class="js-startBrewHolder">
+  <div class="panel" class="js-startBrewRecipeSelect">
+    <p>Which brew recipe are you following today?</p>
+    <select data-property="recipe" class="select js-recipeDropdown">
+      <option value="">--</option>
+      <% for(var i=0;i<recipes.length;i++) {
+            var recipe = recipes[i]; %>
+        <option value="<%= recipe.get('id') %>"><%= recipe.get('name') %></option>
+      <% } %>
+    </select>
+  </div>
+  <div id="startBrewRecipeDetails" class="panel panel-padless panel-borderless js-startBrewRecipeDetails" style="display: none"></div>
+</div>

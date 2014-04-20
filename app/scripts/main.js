@@ -27,10 +27,10 @@ require.config({
 		}
 });
 
-document.addEventListener('deviceready', function() {
-	window.FastClick.attach(document.body);
+//REINSTATE FOR MOBILE
+//document.addEventListener('deviceready', function() {
+	//window.FastClick.attach(document.body);
 	require(['app'], function (App) {
 			App.initialize();
 	});
-}, true);
-
+//}, true);

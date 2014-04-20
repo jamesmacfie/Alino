@@ -11,13 +11,17 @@ define([
 	'views/settings',
 	'views/temperature',
 	'views/timer',
-], function($, _, Backbone, SettingsModel, TemperatureModel, ContainerView, HomeView, SettingsView, TemperatureView, TimerView){
+	'views/startBrew',
+	'views/recipes',
+], function($, _, Backbone, SettingsModel, TemperatureModel, ContainerView, HomeView, SettingsView, TemperatureView, TimerView, StartBrewView, RecipesView){
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'': 'home',
 			'settings': 'settings',
 			'temperature': 'temperature',
-			'timer': 'timer'
+			'timer': 'timer',
+			'recipes': 'recipes',
+			'start': 'startBrew'
 		}
 	});
 
@@ -31,7 +35,9 @@ define([
 				model: TemperatureModel
 			}),
 			timerView = new TimerView(),
-			containerView = new ContainerView();
+			containerView = new ContainerView(),
+			startBrewView = new StartBrewView(),
+			recipesView = new RecipesView();
 
 		appRouter.on('route:home', function(){
 			containerView.changeView(homeView);
@@ -48,6 +54,16 @@ define([
 		appRouter.on('route:timer', function(){
 			containerView.changeView(timerView);
 		});
+
+		appRouter.on('route:startBrew', function(){
+			containerView.changeView(startBrewView);
+		});
+
+	appRouter.on('route:recipes', function(){
+		containerView.changeView(recipesView);
+	});
+
+		Backbone.router = appRouter;
 
 		Backbone.history.start({
 			pushState: true

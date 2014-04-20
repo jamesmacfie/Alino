@@ -8,6 +8,9 @@ define([
 	'router',
 ], function($, _, Backbone, Router){
 	var initialize = function(){
+		//Setup namespace
+		window.Alino = {};
+
 		Router.initialize();
 		bindEvents();
 

@@ -11,6 +11,7 @@ define([
 ], function ($, _, Backbone, JST, Chart, Temperature, Timers) {
 	var HomeView = Backbone.View.extend({
 		el: '#homeContainer',
+		defaultTemplate: JST['app/scripts/templates/homeDefault.ejs'],
 		currentTemperatureEl: '#temperatureCurrent',
 		currentTemperatureTemplate: JST['app/scripts/templates/homeCurrentTemperature.ejs'],
 		historyTemperatureEl: '#temperatureHistory',
@@ -19,7 +20,8 @@ define([
 		timerTemplate: JST['app/scripts/templates/homeTimer.ejs'],
 		events: {
 			'click .js-toggle-timer': 'onToggleTimerClick',
-			'click .js-reset-timer': 'onResetTimerClick'
+			'click .js-reset-timer': 'onResetTimerClick',
+			'click .js-start-brew': 'onStartBrewClick'
 		},
 		initialize: function() {
 			this.bindEvents();
@@ -47,11 +49,19 @@ define([
 			this.listenTo(Timers, 'change', this.onTimerChange);
 		},
 		render: function() {
-			this.resetUI();
-			this.renderCurrentTemperature();
-			this.renderHistoryTemperature();
-			this.renderTimer();
+			if (!window.Alino.activeRecipe) {
+				Backbone.history.navigate('start', {trigger: true, replace: true});
+			} else {
+				this.resetUI();
+				this.renderCurrentTemperature();
+				this.renderHistoryTemperature();
+				this.renderTimer();
+			}
 		},
+		renderDefault: function() {
+			this.$el.html(this.defaultTemplate());
+		},
+
 		renderCurrentTemperature: function() {
 			$(this.currentTemperatureEl).html(this.currentTemperatureTemplate({
 				current: Temperature.get('current'),
@@ -111,6 +121,9 @@ define([
 			};
 
 			new Chart(document.getElementById('canvas').getContext('2d')).Line(lineChartData, config);
+		},
+		onStartBrewClick: function() {
+			Backbone.history.navigate('start', {trigger: true, replace: true});
 		},
 		onTimerChange: function() {
 			if (Backbone.history.fragment === '') {

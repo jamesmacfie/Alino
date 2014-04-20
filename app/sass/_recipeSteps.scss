@@ -1,0 +1,86 @@
+%secondaryRecipeStepBorder {
+  background-color: $recipe-step-border-color-darker;
+  content: '';
+  left: 0;
+  height: 1px;
+  position: absolute;
+  right: 0;
+}
+
+.recipeStep {
+  border-bottom: 1px solid $recipe-step-border-color;
+  padding: $panel-padding;
+  position: relative;
+
+  &:first-of-type {
+    border-top: 1px solid $recipe-step-border-color;
+  }
+
+  &:last-of-type {
+    &:after {
+      @extend %secondaryRecipeStepBorder;
+      bottom: 0px;
+    }
+  }
+
+  &:before {
+    @extend %secondaryRecipeStepBorder;
+    top: -2px;
+  }
+}
+
+.recipeStep--rightIcon {
+  margin-top: 2px;
+}
+
+.recipeStep--title {
+  color: $secondary-color;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.recipeStep--description {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.recipeStep--metaHolder {
+  float: right;
+  margin-left: $recipe-step-margin * 2;
+  width: 100px;
+}
+
+.recipeStep--meta {
+  color: $secondary-color;
+  font-size: 12px;
+  margin: $recipe-step-margin;
+  text-transform: uppercase;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.recipeStep--meta--text {
+  vertical-align: middle;
+}
+
+.recipeStep--meta--icon {
+  font-size: $recipe-step-meta-icon-size;
+  margin-right: $recipe-step-margin / 2;
+  vertical-align: middle;
+}
+
+.iconHolder {
+  color: $home-navigation-background-color;
+  margin-right: $recipe-step-margin / 2;
+  position: relative;
+}
+
+.iconHolder--iconText {
+  color: $base-color;
+  font-size: 10px;
+  left: 4px;
+  position: absolute;
+  top: 4px;
+}
