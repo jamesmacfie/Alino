@@ -12,8 +12,11 @@ define([
 		initialize: function() {
 		},
 		render: function() {
+			var fragmentPart = new RegExp(/[^//]*/),
+				title = Backbone.history.fragment.toLowerCase().match(fragmentPart)[0]
+
 			this.$el.html(this.template({
-				title: Backbone.history.fragment.toLowerCase() || 'home'
+				title: title || 'home'
 			}));
 		}
 	});

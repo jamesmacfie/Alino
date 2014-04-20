@@ -27,7 +27,7 @@ define([
 			this.renderPage();
 		},
 		renderTitleBar: function() {
-			this.titleBar.render();
+			this.titleBar.render(this.title);
 		},
 		renderPage: function() {
 			this.page.$el.show();

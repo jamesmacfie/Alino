@@ -48,13 +48,13 @@ define([
       }));
       $recipePanel.show();
     },
-    startBrewClickHandler: function(event) {
+    startBrewClickHandler: function() {
       var recipeId = $('.js-recipeDropdown').val(),
         recipe = Recipes.get(recipeId);
 
       window.Alino.activeRecipe = recipe;
 
-      Backbone.history.navigate('', {trigger: true, replace: true});
+      Backbone.history.navigate('', {trigger: true});
     }
   });
 

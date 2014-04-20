@@ -84,3 +84,8 @@
   position: absolute;
   top: 4px;
 }
+
+.recipeStep--sortable {
+  border: 1px dashed $secondary-color;
+  height: 100px;
+}

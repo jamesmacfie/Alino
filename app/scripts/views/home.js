@@ -50,7 +50,7 @@ define([
 		},
 		render: function() {
 			if (!window.Alino.activeRecipe) {
-				Backbone.history.navigate('start', {trigger: true, replace: true});
+				Backbone.history.navigate('start', {trigger: true});
 			} else {
 				this.resetUI();
 				this.renderCurrentTemperature();
@@ -123,7 +123,7 @@ define([
 			new Chart(document.getElementById('canvas').getContext('2d')).Line(lineChartData, config);
 		},
 		onStartBrewClick: function() {
-			Backbone.history.navigate('start', {trigger: true, replace: true});
+			Backbone.history.navigate('start', {trigger: true});
 		},
 		onTimerChange: function() {
 			if (Backbone.history.fragment === '') {

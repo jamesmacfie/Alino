@@ -2,6 +2,10 @@
   margin: $form-top-margin 0 $form-bottom-margin 0;
 }
 
+.form-bottomless {
+  margin-bottom: 0;
+}
+
 .label {
   display: block;
   color: $secondary-color;
@@ -13,6 +17,7 @@
   background-color: $input-background-color;
   border: 1px solid $input-border-color;
   color: $input-color;
+  font-family: $roboto;
   font-size: $input-font-size;
   height: $input-height;
   margin: $input-margin;
@@ -46,4 +51,15 @@
 
   -webkit-appearance: none;
   border-radius: 0;
+}
+
+.textarea {
+  @extend %input;
+
+  font-size: $input-font-size - 4;
+  min-height: $textarea-height;
+}
+
+.textarea-bottomless {
+  margin-bottom: 0;
 }

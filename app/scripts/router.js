@@ -6,6 +6,7 @@ define([
 	'backbone',
 	'models/settings',
 	'models/temperature',
+	'collections/recipes',
 	'views/container',
 	'views/home',
 	'views/settings',
@@ -13,7 +14,8 @@ define([
 	'views/timer',
 	'views/startBrew',
 	'views/recipes',
-], function($, _, Backbone, SettingsModel, TemperatureModel, ContainerView, HomeView, SettingsView, TemperatureView, TimerView, StartBrewView, RecipesView){
+	'views/recipe',
+], function($, _, Backbone, SettingsModel, TemperatureModel, Recipes, ContainerView, HomeView, SettingsView, TemperatureView, TimerView, StartBrewView, RecipesView, RecipeView){
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'': 'home',
@@ -21,6 +23,7 @@ define([
 			'temperature': 'temperature',
 			'timer': 'timer',
 			'recipes': 'recipes',
+			'recipe/:id': 'recipe',
 			'start': 'startBrew'
 		}
 	});
@@ -59,9 +62,17 @@ define([
 			containerView.changeView(startBrewView);
 		});
 
-	appRouter.on('route:recipes', function(){
-		containerView.changeView(recipesView);
-	});
+		appRouter.on('route:recipes', function(){
+			containerView.changeView(recipesView);
+		});
+
+		appRouter.on('route:recipe', function(id){
+			var recipe  = Recipes.get(id),
+				recipeView = new RecipeView({
+					model: recipe
+				});
+			containerView.changeView(recipeView);
+		});
 
 		Backbone.router = appRouter;
 

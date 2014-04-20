@@ -12,7 +12,8 @@ define([
 		el: '#recipesContainer',
 		template: JST['app/scripts/templates/recipes.ejs'],
 		events: {
-			'click .js-deleteRecipe': 'onDeleteRecipeClickHandler'
+			'click .js-deleteRecipe': 'onDeleteRecipeClickHandler',
+			'click .js-editRecipe': 'onEditRecipeClickHandler'
 		},
 		initialize: function() {
 
@@ -22,9 +23,12 @@ define([
 				recipes: Recipes.models
 			}));
 		},
+		getIdFromTarget: function(target) {
+			var $target = $(target);
+			return $target.parents('.recipeStep').data('id');
+		} ,
 		onDeleteRecipeClickHandler: function(event) {
-			var $target = $(event.currentTarget),
-				id = $target.parents('.recipeStep').data('id'),
+			var id = this.getIdFromTarget(event.currentTarget),
 				me = this;
 
 			if (!id) {
@@ -42,7 +46,12 @@ define([
 					this.destroy();
 				});
 			areYouSurePopup.show();
+		},
+		onEditRecipeClickHandler: function(event) {
+			var id = this.getIdFromTarget(event.currentTarget);
+			Backbone.history.navigate('recipe/' + id, {trigger: true});
 		}
+
 	});
 
 	return RecipeView;
