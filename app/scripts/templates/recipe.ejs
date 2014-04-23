@@ -1,5 +1,5 @@
 <div class="panel">
-  <h3 class="panelTitle left"><i class="icon icon-beer panelTitle--icon"></i>Editing recipe '<%= name %>'</h3>
+  <h3 class="panelTitle"><i class="icon icon-beer panelTitle--icon"></i>Editing recipe '<%= name %>'</h3>
   <div class="form form-bottomless">
     <label class="label">Name</label>
     <input data-property="name" class="input" type="text" value="<%= name %>" />
@@ -9,26 +9,36 @@
   </div>
 </div>
 
-<div class="sortable">
-  <% for(var i=0;i<steps.length;i++) {
-        var step = steps[i]; %>
-    <div class="recipeStep">
-      <div class="clearfix">
-        <div class="recipeStep--metaHolder">
-          <div class="recipeStep--meta">
-            <i class="icon icon-time recipeStep--meta--icon"></i>
-            <span class="recipeStep--meta--text"> 60:00</span>
+<% for(var i=0;i<groups.length;i++) {
+      var group = groups[i]; %>
+    <div class="group">
+      <h3 class="group--title"><%= group.name %> <i class="icon icon-plus right"></i></h3>
+      <div class="sortable">
+        <% for(var j=0;j<group.steps.length;j++) {
+              var step = group.steps[j]; %>
+          <div class="recipeStep js-recipe-order" data-id="<%= step.id %>">
+            <div class="clearfix">
+              <div class="recipeStep--metaHolder">
+                <% if (step.time) { %>
+                  <div class="recipeStep--meta">
+                    <i class="icon icon-time recipeStep--meta--icon"></i>
+                    <span class="recipeStep--meta--text"> <%= step.time %>:00</span>
+                  </div>
+                <% } %>
+                <% if (step.targetTemp) { %>
+                  <div class="recipeStep--meta">
+                    <i class="icon icon-beaker recipeStep--meta--icon"></i>
+                    <span> <%= step.targetTemp %> &#186;C</span>
+                  </div>
+                <% } %>
+                <span class="recipeStep--meta recipeStep--meta--icon <% if (!step.notification) { %>recipeStep--meta--icon-disabled<% } %>"><i class="icon icon-volume-up"></i> </span>
+                <span class="recipeStep--meta recipeStep--meta--icon <% if (!step.sms) { %>recipeStep--meta--icon-disabled<% } %>"><i class="icon icon-envelope"></i> </span>
+              </div>
+              <p class="recipeStep--title js-edit-step"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText"><%= j + 1 %></span></span> <%= step.name %> <i class="icon icon-pencil right"></i></p>
+              <p class="recipeStep--description"><%= step.description %></p>
+            </div>
           </div>
-          <div class="recipeStep--meta">
-            <i class="icon icon-beaker recipeStep--meta--icon"></i>
-            <span> 75.6 .C</span>
-          </div>
-          <span class="recipeStep--meta recipeStep--meta--icon"><i class="icon icon-volume-up"></i> </span>
-          <span class="recipeStep--meta recipeStep--meta--icon"><i class="icon icon-envelope"></i> </span>
-        </div>
-        <p class="recipeStep--title"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText"><%= i %></span></span><%= step.group.get('name') %>: <%= step.name %></p>
-        <p class="recipeStep--description"><%= step.description %></p>
+        <% } %>
       </div>
     </div>
-  <% } %>
-</div>
+<% } %>

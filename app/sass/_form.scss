@@ -56,7 +56,6 @@
 .textarea {
   @extend %input;
 
-  font-size: $input-font-size - 4;
   min-height: $textarea-height;
 }
 

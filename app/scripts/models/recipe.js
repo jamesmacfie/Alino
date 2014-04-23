@@ -8,8 +8,8 @@ define([
 
 		var RecipeModel = Backbone.Model.extend({
 			defaults: {
-				name: true,
-				steps: []
+				name: '',
+				groups: []
 			}
 		});
 

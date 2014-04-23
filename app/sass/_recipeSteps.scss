@@ -10,10 +10,14 @@
 .recipeStep {
   border-bottom: 1px solid $recipe-step-border-color;
   padding: $panel-padding;
+  padding-left: $panel-padding * 2;
   position: relative;
 
   &:first-of-type {
-    border-top: 1px solid $recipe-step-border-color;
+    border-top: none;
+    &:before {
+      display: none;
+    }
   }
 
   &:last-of-type {
@@ -71,6 +75,10 @@
   vertical-align: middle;
 }
 
+.recipeStep--meta--icon-disabled {
+  color: #3D3D3D;
+}
+
 .iconHolder {
   color: $home-navigation-background-color;
   margin-right: $recipe-step-margin / 2;
@@ -88,4 +96,14 @@
 .recipeStep--sortable {
   border: 1px dashed $secondary-color;
   height: 100px;
+}
+
+.group {
+  padding: $container-padding;
+}
+
+.group--title {
+  font-size: 18px;
+  margin: 0;
+  text-transform: uppercase;
 }

@@ -57,10 +57,6 @@ $navigation-icon-margin: 15px 17px;
 $container-padding: 10px;
 
 /* Panel */
-$panel-border-color: #0a0a0b;
-$panel-border-bottom-color: #09090a;
-$panel-border-width: 1px;
-$panel-border-bottom-width: 2px;
 $panel-padding: $container-padding;
 $panel-bottom-margin: $container-padding;
 
@@ -89,8 +85,8 @@ $label-right-margin: 10px;
 
 $input-color: #fff;
 $input-height: 35px;
-$input-margin: 10px 0 30px 0;
-$input-font-size: 20px;
+$input-margin: 10px 0 10px 0;
+$input-font-size: 16px;
 $input-padding: 5px;
 $input-width: 100%;
 $input-background-color: lighten( $background-color, 5% );
