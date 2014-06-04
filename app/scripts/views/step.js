@@ -69,6 +69,12 @@ define([
 					sms: sms,
 					notification: notification
 				});
+
+				if (this.newStep) {
+					//Give this new step a random ID and save it to the recipe and Step collections
+					this.model.set('id', Helpers.randomId());
+					this.addToCollections();
+				}
 			} else {
 				console.log('FUCKFUCKFUCK!') ;
 			}
@@ -76,6 +82,10 @@ define([
 		validateForm: function() {
 			console.log('Validate the step here');
 			return true;
+		},
+		addToCollections: function() {
+			Steps.add(this.model);
+			this.recipe.get('steps').push(this.model.id);
 		}
 	});
 
