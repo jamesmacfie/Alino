@@ -18,10 +18,20 @@ define([
 			'click .js-save-step': 'onSaveStepClickHandler'
 		},
 		initialize: function() {
+			this.setDefaults();
 			this.bindEvents();
 		},
 		bindEvents: function() {
 
+		},
+		setDefaults: function() {
+			var model = this.model;
+			function setUndefinedProperty(prop) {
+				if (model.get(prop) === null) {
+					model.set(prop, 0);
+				}
+			}
+			['targetTemp', 'time'].forEach(setUndefinedProperty);
 		},
 		render: function() {
 			this.$el.html(this.template({
