@@ -62,15 +62,15 @@ define([
 			$input.val(0);
 		},
 		onSaveStepClickHandler: function() {
-			var name = $('[data-property="name"]').val(),
-				description = $('[data-property="description"]').val(),
+			var name = $('[data-property="name"]').val().trim(),
+				description = $('[data-property="description"]').val().trim(),
 				targetTemp = parseFloat($('[data-property="targetTemp"]').val() || 0, 2),
 				time = parseFloat($('[data-property="time"]').val() || 0, 2),
 				sms = $('[data-property="sms"]').is(':checked'),
 				notification = $('[data-property="notification"]').is(':checked'),
-				validated = true; //this.validateForm(name);
+				validation = this.validateForm(name, description);
 
-			if (validated) {
+			if (validation.success) {
 				this.model.set({
 					name: name,
 					description: description,
@@ -86,12 +86,30 @@ define([
 					this.addToCollections();
 				}
 			} else {
-				console.log('FUCKFUCKFUCK!') ;
+				console.error(validation.errors);
+				return false;
 			}
 		},
-		validateForm: function() {
-			console.log('Validate the step here');
-			return true;
+		validateForm: function(name, description) {
+			var success = true,
+				errors = [];
+
+			if (!name.length) {
+				errors.push('You have to enter a name');
+			}
+
+			if (!description.length) {
+				errors.push('You have to enter a description');
+			}
+
+			if (errors.length) {
+				success = false;
+			}
+
+			return {
+				errors: errors,
+				success: success
+			};
 		},
 		addToCollections: function() {
 			//Add step to collection and save to local storage
