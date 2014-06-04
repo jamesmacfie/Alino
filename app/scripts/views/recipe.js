@@ -89,7 +89,7 @@ define([
 		},
 		onNewStepClickHandler: function(event) {
 			var $target = $(event.currentTarget),
-				groupId = $target.parent('.group').data('id');
+				groupId = $target.parents('.group').data('id');
 
 			Backbone.history.navigate('recipe/edit/' + this.model.get('id') + '/step/new/' + groupId, {trigger: true});
 		}
