@@ -2,10 +2,10 @@
 	<h3 class="panelTitle"><a href="/recipe/edit/<%= recipe.id %>" class="js-save-step"><i class="icon icon-angle-left panelTitle--icon"></i>Save and return to <%= recipe.name %></a></h3>
 	<div class="form form-bottomless">
 		<label class="label">Name</label>
-		<input data-property="name" class="input" type="text" value="<%= name %>" />
+		<input data-property="name" class="input" type="text" placeholder="What's this step called?" value="<%= name %>" />
 
 		<label class="label">Description</label>
-		<textarea data-property="description" class="textarea"><%= description %></textarea>
+		<textarea data-property="description" placeholder="Care to describe this step a little more?" class="textarea"><%= description %></textarea>
 
 		<div class="clearfix">
 			<label class="label">Desired Temp</label>

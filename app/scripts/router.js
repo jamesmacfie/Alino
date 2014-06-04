@@ -88,7 +88,7 @@ define([
 
 		appRouter.on('route:newStep', function(recipeId, groupId){
 			var step  = new Step({
-					name: 'New brew step',
+					name: '',
 					groupId: parseInt(groupId)
 				}),
 				stepView = new StepView({
