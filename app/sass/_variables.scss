@@ -17,11 +17,19 @@ $control-hover-color: #1F5366;
 $control-color: #fff;
 
 /* Navigation */
-$home-navigation-background-color: #3da7de;
-$temperature-navigation-background-color: #f94720;
-$timer-navigation-background-color: #ffba15;
-$settings-navigation-background-color: #61c227;
-$recipes-navigation-background-color: #cd1560;
+$background-blue: #3da7de;
+$background-orange: #f94720;
+$background-yellow: #ffba15;
+$background-green: #61c227;
+$background-pink: #cd1560;
+$background-turquoise: #3fb8af;
+
+//Deprecieated variables
+$home-navigation-background-color: $background-blue;
+$temperature-navigation-background-color: $background-orange;
+$timer-navigation-background-color: $background-yellow;
+$settings-navigation-background-color: $background-green;
+$recipes-navigation-background-color: $background-pink;
 
 $title-bar-height: 55px;
 

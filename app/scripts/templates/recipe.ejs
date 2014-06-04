@@ -1,5 +1,5 @@
 <div class="panel">
-  <h3 class="panelTitle"><i class="icon icon-beer panelTitle--icon"></i>Editing recipe '<%= name %>'</h3>
+  <h3 class="panelTitle"><a href="/recipes"><i class="icon icon-angle-left panelTitle--icon"></i>Save and return to recipes</a></h3>
   <div class="form form-bottomless">
     <label class="label">Name</label>
     <input data-property="name" class="input" type="text" value="<%= name %>" />
@@ -11,8 +11,8 @@
 
 <% for(var i=0;i<groups.length;i++) {
       var group = groups[i]; %>
-    <div class="group">
-      <h3 class="group--title"><%= group.name %> <i class="icon icon-plus right"></i></h3>
+    <div class="group" data-id="<%= group.id %>">
+      <h3 class="group--title"><%= group.name %> <i class="icon icon-plus right js-new-step"></i></h3>
       <div class="sortable">
         <% for(var j=0;j<group.steps.length;j++) {
               var step = group.steps[j]; %>

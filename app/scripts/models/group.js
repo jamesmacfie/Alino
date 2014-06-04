@@ -8,8 +8,7 @@ define([
 
 		var GroupModel = Backbone.Model.extend({
 			defaults: {
-				name: '',
-				order: 0
+				name: ''
 			}
 		});
 

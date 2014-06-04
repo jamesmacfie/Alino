@@ -1,48 +1,25 @@
 /*global define*/
-
 define([
 		'underscore',
 		'backbone',
+		'modules/helpers',
 		'models/recipe',
 		'models/step',
 		'collections/groups'
-], function (_, Backbone, Recipe, Step, Groups) {
+], function (_, Backbone, Helpers, Recipe, Step, Groups) {
 		'use strict';
 
 		var StepCollection = Backbone.Collection.extend({
+			storageKey: 'bSteps',
 			model: Step,
 			initialize: function() {
 
 			},
 			loadFromLocalStorage: function() {
-				var local = localStorage.getItem('bSteps');
-				if (local === 'undefined') {
-					return;
-				}
-
-				var data = JSON.parse(local);
-				if (data) {
-					_.each(data, function(value) {
-						var setObj = {};
-						_.each(value, function(value, key) {
-							setObj[key] = value;
-						}.bind(this));
-
-						this.add(setObj, {
-							silent: true
-						});
-
-					}.bind(this));
-				}
+				Helpers.loadFromLocalStorage(this);
 			},
 			saveToLocalStorage: function() {
-				var objectToSave = [];
-
-				_.each(this.models, function(model) {
-					objectToSave.push(model.attributes);
-				});
-
-				localStorage.setItem('bSteps', JSON.stringify(objectToSave));
+				Helpers.saveToLocalStorage(this);
 			},
 			returnGroupSteps: function(id) {
 				var group = Groups.get(id),

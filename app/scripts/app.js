@@ -1,4 +1,4 @@
-/*global define*/
+/*global define, Alino*/
 'use strict';
 
 define([
@@ -19,12 +19,24 @@ define([
 
 	var bindEvents = function() {
 		//Setup global bus
-		Backbone.bus = _.extend({}, Backbone.Events);
+		Alino.bus = _.extend({}, Backbone.Events);
 
 		//Ensure anchor tags use the history API
 		$(document).on('click', 'a[href^="/"]', function(event) {
 			event.preventDefault();
 			Backbone.history.navigate($(this).attr('href'), {trigger: true});
+		});
+
+		$(document).on('click', '.js-toggle-menu', function() {
+			var $body = $('body');
+
+			if (!$body.hasClass('showNavigation')) {
+				$('#main').append('<div id="overlay" class="overlay js-toggle-menu"></div>');
+			} else {
+				$('#overlay').remove();
+			}
+
+			$('body').toggleClass('showNavigation');
 		});
 	};
 

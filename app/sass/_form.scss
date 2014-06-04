@@ -34,6 +34,19 @@
   }
 }
 
+.input--cross {
+	float: left;
+	width: calc(100% - 40px);
+}
+
+.input__cross {
+	float: right;
+	font-size: 30px;
+	height: $input-height;
+	padding: 10px 0 0 5px;
+	width: $input-height;
+}
+
 .selectContainer {
   position: relative;
 
@@ -61,4 +74,18 @@
 
 .textarea-bottomless {
   margin-bottom: 0;
+}
+
+.form__section {
+	border: 1px solid #F00;
+	margin: 20px 0 10px;
+	padding: 5px;
+	position: relative;
+}
+
+.form__section__checkbox {
+	background: $background-color;
+	padding: 0px 5px;
+	position: absolute;
+	top: -11px;
 }

@@ -93,3 +93,8 @@
 .checkbox--icon {
 	margin-right: $container-padding;
 }
+
+.checkbox-holder {
+	@extend .clearfix;
+	margin-bottom: 10px;
+}

@@ -10,7 +10,6 @@
 .recipeStep {
   border-bottom: 1px solid $recipe-step-border-color;
   padding: $panel-padding;
-  padding-left: $panel-padding * 2;
   position: relative;
 
   &:first-of-type {
@@ -106,4 +105,8 @@
   font-size: 18px;
   margin: 0;
   text-transform: uppercase;
+}
+
+.group--title--icon {
+	margin-top: 3px;
 }

@@ -5,17 +5,19 @@ define([
 	'underscore',
 	'backbone',
 	'templates',
-	'collections/recipes',
-	'modules/popup'
-], function ($, _, Backbone, JST, Recipes, Popup) {
-	var RecipeView = Backbone.View.extend({
-		el: '#recipesContainer',
+	'modules/helpers',
+	'collections/recipes'
+], function ($, _, Backbone, JST, Helpers, Recipes) {
+	var RecipesView = Backbone.View.extend({
 		template: JST['app/scripts/templates/recipes.ejs'],
 		events: {
 			'click .js-deleteRecipe': 'onDeleteRecipeClickHandler',
 			'click .js-editRecipe': 'onEditRecipeClickHandler'
 		},
 		initialize: function() {
+			this.bindEvents();
+		},
+		bindEvents: function() {
 
 		},
 		render: function() {
@@ -23,36 +25,25 @@ define([
 				recipes: Recipes.models
 			}));
 		},
+		afterRender: function() {
+			Helpers.setTitleInfo({
+				name: 'Recipes',
+				icon: 'recipes',
+				backgroundColor: 'pink'
+			});
+		},
 		getIdFromTarget: function(target) {
 			var $target = $(target);
 			return $target.parents('.recipeStep').data('id');
 		} ,
 		onDeleteRecipeClickHandler: function(event) {
-			var id = this.getIdFromTarget(event.currentTarget),
-				me = this;
-
-			if (!id) {
-				return;
-			}
-
-			var areYouSurePopup = new Popup('Are you sure?',
-				'Are you sure you want to delete this recipe?',
-				function() {
-					Recipes.remove(id);
-					me.render();
-					this.destroy();
-				},
-				function() {
-					this.destroy();
-				});
-			areYouSurePopup.show();
+			console.log('delete');
 		},
 		onEditRecipeClickHandler: function(event) {
 			var id = this.getIdFromTarget(event.currentTarget);
-			Backbone.history.navigate('recipe/' + id, {trigger: true});
+			Backbone.history.navigate('recipe/edit/' + id, {trigger: true});
 		}
-
 	});
 
-	return RecipeView;
+	return RecipesView;
 });

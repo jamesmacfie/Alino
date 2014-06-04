@@ -1,7 +1,6 @@
 .container {
-	height: 100%;
+	height: calc(100% - 55px);
 	padding: $container-padding;
-	padding-top: $title-bar-height + $container-padding;
 	overflow-y: scroll;
 	position: relative;
 }

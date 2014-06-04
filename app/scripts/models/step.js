@@ -16,6 +16,9 @@ define([
 				notification: true,
 				sms: true,
 				order: 0
+			},
+			inialize: function() {
+
 			}
 		});
 

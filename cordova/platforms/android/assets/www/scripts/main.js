@@ -15103,7 +15103,7 @@ __p += 'pause';
  } else { ;
 __p += 'play';
  } ;
-__p += '"></i></button>\n\t<button type="submit" class="js-reset-timer"><i class="icon icon-repeat"></i></button>\n</div>\n';
+__p += '"></i></button>\n\t<button class="button-spaced" type="submit" class="js-reset-timer"><i class="icon icon-repeat"></i></button>\n</div>\n';
 
 }
 return __p
@@ -15123,6 +15123,63 @@ __p += '<div class="overlay overlay-popup"></div>\n<div class="popup" style="dis
 return __p
 };
 
+this["JST"]["app/scripts/templates/recipe.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<div class="panel">\n  <h3 class="panelTitle"><i class="icon icon-beer panelTitle--icon"></i>Editing recipe \'' +
+((__t = ( name )) == null ? '' : __t) +
+'\'</h3>\n  <div class="form form-bottomless">\n    <label class="label">Name</label>\n    <input data-property="name" class="input" type="text" value="' +
+((__t = ( name )) == null ? '' : __t) +
+'" />\n\n    <label class="label">Description</label>\n    <textarea data-property="description" class="textarea textarea-bottomless">' +
+((__t = ( description )) == null ? '' : __t) +
+'</textarea>\n  </div>\n</div>\n\n';
+ for(var i=0;i<groups.length;i++) {
+      var group = groups[i]; ;
+__p += '\n    <div class="group">\n      <h3 class="group--title">' +
+((__t = ( group.name )) == null ? '' : __t) +
+' <i class="icon icon-plus right"></i></h3>\n      <div class="sortable">\n        ';
+ for(var j=0;j<group.steps.length;j++) {
+              var step = group.steps[j]; ;
+__p += '\n          <div class="recipeStep js-recipe-order" data-id="' +
+((__t = ( step.id )) == null ? '' : __t) +
+'">\n            <div class="clearfix">\n              <div class="recipeStep--metaHolder">\n                ';
+ if (step.time) { ;
+__p += '\n                  <div class="recipeStep--meta">\n                    <i class="icon icon-time recipeStep--meta--icon"></i>\n                    <span class="recipeStep--meta--text"> ' +
+((__t = ( step.time )) == null ? '' : __t) +
+':00</span>\n                  </div>\n                ';
+ } ;
+__p += '\n                ';
+ if (step.targetTemp) { ;
+__p += '\n                  <div class="recipeStep--meta">\n                    <i class="icon icon-beaker recipeStep--meta--icon"></i>\n                    <span> ' +
+((__t = ( step.targetTemp )) == null ? '' : __t) +
+' &#186;C</span>\n                  </div>\n                ';
+ } ;
+__p += '\n                <span class="recipeStep--meta recipeStep--meta--icon ';
+ if (!step.notification) { ;
+__p += 'recipeStep--meta--icon-disabled';
+ } ;
+__p += '"><i class="icon icon-volume-up"></i> </span>\n                <span class="recipeStep--meta recipeStep--meta--icon ';
+ if (!step.sms) { ;
+__p += 'recipeStep--meta--icon-disabled';
+ } ;
+__p += '"><i class="icon icon-envelope"></i> </span>\n              </div>\n              <p class="recipeStep--title"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText">' +
+((__t = ( j + 1 )) == null ? '' : __t) +
+'</span></span> ' +
+((__t = ( step.name )) == null ? '' : __t) +
+' <i class="icon icon-pencil right"></i></p>\n              <p class="recipeStep--description">' +
+((__t = ( step.description )) == null ? '' : __t) +
+'</p>\n            </div>\n          </div>\n        ';
+ } ;
+__p += '\n      </div>\n    </div>\n';
+ } ;
+__p += '\n<button class="button-spaced" type="submit" class="js-add-step">Add another step</button>\n';
+
+}
+return __p
+};
+
 this["JST"]["app/scripts/templates/recipes.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
@@ -15131,7 +15188,9 @@ with (obj) {
 
  for(var i=0;i<recipes.length;i++) {
       var recipe = recipes[i]; ;
-__p += '\n  <div class="recipeStep">\n    <div class="clearfix">\n      <i class="js-deleteRecipe icon icon-trash recipeStep--rightIcon right"></i>\n      <p class="recipeStep--title js-recipeEdit">' +
+__p += '\n  <div class="recipeStep" data-id="' +
+((__t = ( recipe.get('id') )) == null ? '' : __t) +
+'">\n    <div class="clearfix">\n      <i class="js-deleteRecipe icon icon-trash recipeStep--rightIcon right"></i>\n      <p class="recipeStep--title js-editRecipe">' +
 ((__t = ( recipe.get('name') )) == null ? '' : __t) +
 ' <i class="icon icon-pencil"></i></p>\n      <p class="recipeStep--description">' +
 ((__t = ( recipe.get('description') )) == null ? '' : __t) +
@@ -15218,12 +15277,14 @@ __p += '  ';
 __p += '\n    <div class="recipeStep">\n      <div class="clearfix">\n        <div class="recipeStep--metaHolder">\n          <div class="recipeStep--meta">\n            <i class="icon icon-time recipeStep--meta--icon"></i>\n            <span class="recipeStep--meta--text"> 60:00</span>\n          </div>\n          <div class="recipeStep--meta">\n            <i class="icon icon-beaker recipeStep--meta--icon"></i>\n            <span> 75.6 .C</span>\n          </div>\n          <span class="recipeStep--meta recipeStep--meta--icon"><i class="icon icon-volume-up"></i> </span>\n          <span class="recipeStep--meta recipeStep--meta--icon"><i class="icon icon-envelope"></i> </span>\n        </div>\n        <p class="recipeStep--title"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText">' +
 ((__t = ( i )) == null ? '' : __t) +
 '</span></span>' +
+((__t = ( step.group.get('name') )) == null ? '' : __t) +
+': ' +
 ((__t = ( step.name )) == null ? '' : __t) +
 '</p>\n        <p class="recipeStep--description">' +
 ((__t = ( step.description )) == null ? '' : __t) +
 '</p>\n      </div>\n    </div>\n  ';
  } ;
-__p += '\n';
+__p += '\n  <button type="submit" class="button-spaced js-start-brew"><i class="icon icon-play"></i> Start</button>\n';
 
 }
 return __p
@@ -15562,6 +15623,223 @@ define('models/temperature',[
 		return new TemperatureModel();
 });
 
+/*global define*/
+
+define('models/recipe',[
+		'underscore',
+		'backbone',
+], function (_, Backbone) {
+		'use strict';
+
+		var RecipeModel = Backbone.Model.extend({
+			defaults: {
+				name: true,
+				steps: []
+			}
+		});
+
+		return RecipeModel;
+});
+
+/*global define*/
+
+define('models/group',[
+		'underscore',
+		'backbone',
+], function (_, Backbone) {
+		'use strict';
+
+		var GroupModel = Backbone.Model.extend({
+			defaults: {
+				name: '',
+				order: 0
+			}
+		});
+
+		return GroupModel;
+});
+
+'use strict';
+
+define('modules/helpers',[], function () {
+	return {
+		id: function() {
+			return Math.floor(Math.random() * 1000000);
+		}
+	};
+});
+
+/*global define*/
+
+define('collections/groups',[
+		'underscore',
+		'backbone',
+		'models/recipe',
+		'models/group',
+		'modules/helpers'
+], function (_, Backbone, Recipe, Group) {
+		'use strict';
+
+		var GroupCollection = Backbone.Collection.extend({
+			model: Group,
+			initialize: function() {
+
+			}
+		});
+
+		return new GroupCollection([
+			{
+				id: 1,
+				name: 'Mash',
+				'order': 1
+			},
+			{
+				id: 2,
+				name: 'Boil',
+				'order': 2
+			}
+		]);
+});
+
+
+
+/*global define*/
+
+define('collections/recipes',[
+		'underscore',
+		'backbone',
+		'models/recipe',
+		'collections/groups',
+], function (_, Backbone, Recipe) {
+		'use strict';
+
+		var RecipeCollection = Backbone.Collection.extend({
+			//model: Recipe,
+			initialize: function() {
+
+				//this.loadFromLocalStorage();
+			},
+			loadFromLocalStorage: function() {
+				var local = localStorage.getItem('bRecipes');
+				if (local === 'undefined') {
+					return;
+				}
+
+				var data = JSON.parse(local);
+				if (data) {
+					_.each(data, function(value) {
+						var setObj = {};
+						_.each(value, function(value, key) {
+							setObj[key] = value;
+						}.bind(this));
+
+						this.add(setObj, {
+							silent: true
+						});
+
+					}.bind(this));
+				}
+			},
+			saveToLocalStorage: function() {
+				var objectToSave = [];
+
+				_.each(this.models, function(model) {
+					objectToSave.push(model.attributes);
+				});
+
+				localStorage.setItem('bRecipes', JSON.stringify(objectToSave));
+			}
+		});
+
+		return new RecipeCollection([
+			{
+				id: 1,
+				name: 'Light body, triple hop',
+				description: 'A single infusion mash at 64.4 C. Includes mash out and sparge. 90 minute boil with hop additions at 90 minutes, 20 minutes, and flame out.',
+				steps: [
+					{
+						id: 1,
+						name: 'Sachirification Rest',
+						description: 'Ultricies Venenatis Parturient Commodo Vulputate',
+						groupId: 1,
+						targetTemp: 64.4,
+						time: 60,
+						notification: false,
+						sms: true
+					},
+					{
+						id: 2,
+						name: 'Mash out',
+						description: 'Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper.',
+						groupId: 1,
+						targetTemp: 75.6,
+						time: 10,
+						notification: true,
+						sms: true
+					},
+					{
+						id: 3,
+						name: 'Sparge',
+						description: 'Ipsum Nullam Sem',
+						groupId: 1,
+						targetTemp: 75.6,
+						time: 10,
+						notification: true,
+						sms: true
+					},
+					{
+						id: 5,
+						name: 'Start boil',
+						description: '',
+						groupId: 2,
+						time: 90,
+						notification: false,
+						sms: false
+					},
+					{
+						id: 6,
+						name: 'Add bittering hops',
+						description: 'Add bittering hops at 60 minutes.',
+						groupId: 2,
+						time: 60,
+						notification: true,
+						sms: true
+					},
+					{
+						id: 7,
+						name: 'Add Flavor Hops',
+						description: 'Add flavor hops at 10 minutes. If you are adding irish moss or yeast nutrient then add these to the boil here too. If you are using an immersion chiller, insert the chiller into the boil no later than now.',
+						groupId: 2,
+						time: 10,
+						notification: true,
+						sms: true
+					},
+					{
+						id: 8,
+						name: 'Flame Out',
+						description: 'Add arome hops and turn off the heat.',
+						groupId: 2,
+						time: 0,
+						notification: true,
+						sms: true
+					}
+				]
+			},
+			{
+				id: 2,
+				name: 'Medium body, single hop',
+				description: 'A single infusion mash at 66.7 C. Includes mash out and sparge. 90 minute boil with ha single hop addition at 60 minutes.',
+				steps: []
+			},
+			{
+				id: 3,
+				name: 'Light body, single hop',
+				description: 'A single infusion mash at 64.4 C. Includes mash out and sparge. 60 minute boil with ha single hop addition at 60 minutes.',
+				steps: []
+			},
+		]);
+});
+
 'use strict';
 
 define('views/titleBar',[
@@ -15576,8 +15854,11 @@ define('views/titleBar',[
 		initialize: function() {
 		},
 		render: function() {
+			var fragmentPart = new RegExp(/[^//]*/),
+				title = Backbone.history.fragment.toLowerCase().match(fragmentPart)[0]
+
 			this.$el.html(this.template({
-				title: Backbone.history.fragment.toLowerCase() || 'home'
+				title: title || 'home'
 			}));
 		}
 	});
@@ -15614,7 +15895,7 @@ define('views/container',[
 			this.renderPage();
 		},
 		renderTitleBar: function() {
-			this.titleBar.render();
+			this.titleBar.render(this.title);
 		},
 		renderPage: function() {
 			this.page.$el.show();
@@ -17116,16 +17397,6 @@ define('models/timer',[
 		return TimerModel;
 });
 
-'use strict';
-
-define('modules/helpers',[], function () {
-	return {
-		id: function() {
-			return Math.floor(Math.random() * 1000000);
-		}
-	};
-});
-
 /*global define*/
 
 define('collections/timers',[
@@ -17340,11 +17611,14 @@ define('views/home',[
 			this.listenTo(Timers, 'change', this.onTimerChange);
 		},
 		render: function() {
-			this.renderDefault();
-			//this.resetUI();
-			//this.renderCurrentTemperature();
-			//this.renderHistoryTemperature();
-			//this.renderTimer();
+			if (!window.Alino.activeRecipe) {
+				Backbone.history.navigate('start', {trigger: true});
+			} else {
+				this.resetUI();
+				this.renderCurrentTemperature();
+				this.renderHistoryTemperature();
+				this.renderTimer();
+			}
 		},
 		renderDefault: function() {
 			this.$el.html(this.defaultTemplate());
@@ -17411,7 +17685,7 @@ define('views/home',[
 			new Chart(document.getElementById('canvas').getContext('2d')).Line(lineChartData, config);
 		},
 		onStartBrewClick: function() {
-			Backbone.history.navigate('start', {trigger: true, replace: true});
+			Backbone.history.navigate('start', {trigger: true});
 		},
 		onTimerChange: function() {
 			if (Backbone.history.fragment === '') {
@@ -17769,133 +18043,6 @@ define('views/timer',[
 	return TimerView;
 });
 
-/*global define*/
-
-define('models/recipe',[
-		'underscore',
-		'backbone',
-], function (_, Backbone) {
-		'use strict';
-
-		var RecipeModel = Backbone.Model.extend({
-			defaults: {
-				name: true,
-				steps: []
-			}
-		});
-
-		return RecipeModel;
-});
-
-/*global define*/
-
-define('collections/recipes',[
-		'underscore',
-		'backbone',
-		'models/recipe',
-		'modules/helpers'
-], function (_, Backbone, Recipe, Helpers) {
-		'use strict';
-
-		var RecipeCollection = Backbone.Collection.extend({
-			//model: Recipe,
-			initialize: function() {
-
-				//this.loadFromLocalStorage();
-			},
-			loadFromLocalStorage: function() {
-				var local = localStorage.getItem('bRecipes');
-				if (local === 'undefined') {
-					return;
-				}
-
-				var data = JSON.parse(local);
-				if (data) {
-					_.each(data, function(value) {
-						var setObj = {};
-						_.each(value, function(value, key) {
-							setObj[key] = value;
-						}.bind(this));
-
-						this.add(setObj, {
-							silent: true
-						});
-
-					}.bind(this));
-				}
-			},
-			saveToLocalStorage: function() {
-				var objectToSave = [];
-
-				_.each(this.models, function(model) {
-					objectToSave.push(model.attributes);
-				});
-
-				localStorage.setItem('bRecipes', JSON.stringify(objectToSave));
-			}
-		});
-
-		return new RecipeCollection([
-			{
-				id: 1,
-				name: 'Light body, triple hop',
-				description: 'A single infusion mash at 64.4 C. Includes mash out and sparge. 90 minute boil with hop additions at 90 minutes, 20 minutes, and flame out.',
-				steps: [
-					{
-						name: 'Sachirification Rest',
-						description: 'Ultricies Venenatis Parturient Commodo Vulputate',
-						targetTemp: 64.4,
-						time: 60
-					},
-					{
-						name: 'Mash out',
-						description: 'Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper.',
-						targetTemp: 75.6,
-						time: 10
-					},
-					{
-						name: 'Sparge',
-						description: 'Ipsum Nullam Sem',
-						targetTemp: 75.6,
-						time: 10
-					},
-					{
-						name: 'Start boil',
-						description: '',
-						time: 90
-					},
-					{
-						name: 'Add bittering hops',
-						description: 'Add bittering hops at 60 minutes.',
-						time: 60
-					},
-					{
-						name: 'Add Flavor Hops',
-						description: 'Add flavor hops at 10 minutes. If you are adding irish moss or yeast nutrient then add these to the boil here too. If you are using an immersion chiller, insert the chiller into the boil no later than now.',
-						time: 10
-					},
-					{
-						name: 'Flame Out',
-						description: 'Add arome hops and turn off the heat.',
-						time: 0
-					}
-				]
-			},
-			{
-				id: 2,
-				name: 'Medium body, single hop',
-				description: 'A single infusion mash at 66.7 C. Includes mash out and sparge. 90 minute boil with ha single hop addition at 60 minutes.',
-				steps: []
-			},
-			{
-				id: 3,
-				name: 'Light body, single hop',
-				description: 'A single infusion mash at 64.4 C. Includes mash out and sparge. 60 minute boil with ha single hop addition at 60 minutes.',
-				steps: []
-			},
-		]);
-});
-
 'use strict';
 
 define('views/startBrew',[
@@ -17911,10 +18058,11 @@ define('views/startBrew',[
     detailEl: '#startBrewRecipeDetails',
     detailTemplate: JST['app/scripts/templates/startBrewRecipeSteps.ejs'],
     events: {
-      'change .js-recipeDropdown': 'onRecipeDropdownChangeHandler'
+      'change .js-recipeDropdown': 'onRecipeDropdownChangeHandler',
+      'click .js-start-brew': 'startBrewClickHandler'
     },
     initialize: function() {
-      
+
     },
     render: function() {
       this.$el.html(this.template({
@@ -17944,6 +18092,14 @@ define('views/startBrew',[
         steps: recipe.get('steps')
       }));
       $recipePanel.show();
+    },
+    startBrewClickHandler: function() {
+      var recipeId = $('.js-recipeDropdown').val(),
+        recipe = Recipes.get(recipeId);
+
+      window.Alino.activeRecipe = recipe;
+
+      Backbone.history.navigate('', {trigger: true});
     }
   });
 
@@ -17958,22 +18114,277 @@ define('views/recipes',[
 	'backbone',
 	'templates',
 	'collections/recipes',
-], function ($, _, Backbone, JST, Recipes) {
+	'modules/popup'
+], function ($, _, Backbone, JST, Recipes, Popup) {
 	var RecipeView = Backbone.View.extend({
 		el: '#recipesContainer',
 		template: JST['app/scripts/templates/recipes.ejs'],
 		events: {
+			'click .js-deleteRecipe': 'onDeleteRecipeClickHandler',
+			'click .js-editRecipe': 'onEditRecipeClickHandler'
 		},
 		initialize: function() {
+
 		},
 		render: function() {
 			this.$el.html(this.template({
 				recipes: Recipes.models
 			}));
+		},
+		getIdFromTarget: function(target) {
+			var $target = $(target);
+			return $target.parents('.recipeStep').data('id');
+		} ,
+		onDeleteRecipeClickHandler: function(event) {
+			var id = this.getIdFromTarget(event.currentTarget),
+				me = this;
+
+			if (!id) {
+				return;
+			}
+
+			var areYouSurePopup = new Popup('Are you sure?',
+				'Are you sure you want to delete this recipe?',
+				function() {
+					Recipes.remove(id);
+					me.render();
+					this.destroy();
+				},
+				function() {
+					this.destroy();
+				});
+			areYouSurePopup.show();
+		},
+		onEditRecipeClickHandler: function(event) {
+			var id = this.getIdFromTarget(event.currentTarget);
+			Backbone.history.navigate('recipe/' + id, {trigger: true});
 		}
+
 	});
 
 	return RecipeView;
+});
+
+'use strict';
+
+define('libs/html.sortable',['jquery'], 
+  function($){
+  /*
+   * HTML5 Sortable jQuery Plugin
+   * https://github.com/voidberg/html5sortable
+   *
+   * Original code copyright 2012 Ali Farhadi.
+   * This version is mantained by Alexandru Badiu <andu@ctrlz.ro>
+   *
+   * Thanks to the following contributors: andyburke, bistoco, daemianmack, drskullster, flying-sheep, OscarGodson, Parikshit N. Samant, rodolfospalenza, ssafejava
+   *
+   * Released under the MIT license.
+   */
+
+  (function ($) {
+    var dragging, placeholders = $();
+    $.fn.sortable = function (options) {
+      var method = String(options);
+
+      options = $.extend({
+        connectWith: false,
+        placeholder: null,
+        dragImage: null
+      }, options);
+
+      return this.each(function () {
+        if (method === 'reload') {
+          $(this).children(options.items).off('dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s');
+        }
+        if (/^enable|disable|destroy$/.test(method)) {
+          var citems = $(this).children($(this).data('items')).attr('draggable', method === 'enable');
+          if (method === 'destroy') {
+            $(this).off('sortupdate');
+            citems.add(this).removeData('connectWith items')
+              .off('dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s').off('sortupdate');
+          }
+          return;
+        }
+
+        var soptions = $(this).data('opts');
+
+        if (typeof soptions === 'undefined') {
+          $(this).data('opts', options);
+        }
+        else {
+          options = soptions;
+        }
+
+        var isHandle, index, items = $(this).children(options.items);
+        var startParent, newParent;
+        var placeholder = ( options.placeholder === null ) ? $('<' + (/^ul|ol$/i.test(this.tagName) ? 'li' : 'div') + ' class="sortable-placeholder">') : $(options.placeholder).addClass('sortable-placeholder');
+        items.find(options.handle).mousedown(function () {
+          isHandle = true;
+        }).mouseup(function () {
+            isHandle = false;
+          });
+        $(this).data('items', options.items);
+        placeholders = placeholders.add(placeholder);
+        if (options.connectWith) {
+          $(options.connectWith).add(this).data('connectWith', options.connectWith);
+        }
+        items.attr('draggable', 'true').on('dragstart.h5s',function (e) {
+          e.stopImmediatePropagation();
+          if (options.handle && !isHandle) {
+            return false;
+          }
+          isHandle = false;
+          var dt = e.originalEvent.dataTransfer;
+          dt.effectAllowed = 'move';
+          dt.setData('Text', 'dummy');
+
+          if (options.dragImage && dt.setDragImage) {
+            dt.setDragImage(options.dragImage, 0, 0);
+          }
+
+          index = (dragging = $(this)).addClass('sortable-dragging').index();
+          startParent = $(this).parent();
+        }).on('dragend.h5s',function () {
+            if (!dragging) {
+              return;
+            }
+            dragging.removeClass('sortable-dragging').show();
+            placeholders.detach();
+            newParent = $(this).parent();
+            if (index !== dragging.index() || startParent !== newParent) {
+              dragging.parent().triggerHandler('sortupdate', {item: dragging, oldindex: index, startparent: startParent, endparent: newParent});
+            }
+            dragging = null;
+          }).not('a[href], img').on('selectstart.h5s',function () {
+            if (options.handle && !isHandle) {
+              return true;
+            }
+
+            if (this.dragDrop) {
+              this.dragDrop();
+            }
+            return false;
+          }).end().add([this, placeholder]).on('dragover.h5s dragenter.h5s drop.h5s', function (e) {
+            if (!items.is(dragging) && options.connectWith !== $(dragging).parent().data('connectWith')) {
+              return true;
+            }
+            if (e.type === 'drop') {
+              e.stopPropagation();
+              placeholders.filter(':visible').after(dragging);
+              dragging.trigger('dragend.h5s');
+              return false;
+            }
+            e.preventDefault();
+            e.originalEvent.dataTransfer.dropEffect = 'move';
+            if (items.is(this)) {
+              var draggingHeight = dragging.outerHeight(), thisHeight = $(this).outerHeight();
+              if (options.forcePlaceholderSize) {
+                placeholder.height(draggingHeight);
+              }
+
+              // Check if $(this) is bigger than the draggable. If it is, we have to define a dead zone to prevent flickering
+              if (thisHeight > draggingHeight) {
+                // Dead zone?
+                var deadZone = thisHeight - draggingHeight, offsetTop = $(this).offset().top;
+                if (placeholder.index() < $(this).index() && e.originalEvent.pageY < offsetTop + deadZone) {
+                  return false;
+                }
+                else if (placeholder.index() > $(this).index() && e.originalEvent.pageY > offsetTop + thisHeight - deadZone) {
+                  return false;
+                }
+              }
+
+              dragging.hide();
+              $(this)[placeholder.index() < $(this).index() ? 'after' : 'before'](placeholder);
+              placeholders.not(placeholder).detach();
+            } else if (!placeholders.is(this) && !$(this).children(options.items).length) {
+              placeholders.detach();
+              $(this).append(placeholder);
+            }
+            return false;
+          });
+      });
+    };
+  })($);
+});
+
+'use strict';
+
+define('views/recipe',[
+  'jquery',
+  'underscore',
+  'backbone',
+  'templates',
+  'collections/groups',
+  'libs/html.sortable',
+], function ($, _, Backbone, JST, Groups) {
+  var RecipeView = Backbone.View.extend({
+    el: '#recipeContainer',
+    template: JST['app/scripts/templates/recipe.ejs'],
+    events: {
+
+    },
+    initialize: function() {
+
+    },
+    render: function() {
+      var me = this,
+        groups = this.groupDisplayInfo(this.model.get('steps')),
+        displayGroups = [];
+
+      //TODO - fix when I have a proper step model
+      var stepMapper = function(step) {
+        return {
+          id: step.id,
+          name: step.name,
+          description: step.description,
+          time: step.time,
+          targetTemp: step.targetTemp,
+          notification: step.notification,
+          sms: step.sms
+        };
+      };
+
+      Groups.each(function(group) {
+        var steps = groups[group.get('id')],
+          displayGroup = {
+            id: group.get('id'),
+            name: group.get('name'),
+            order: group.get('order'),
+            steps: _.map(steps, stepMapper)
+          };
+
+        displayGroups.push(displayGroup);
+      });
+
+      this.$el.html(this.template({
+        name: this.model.get('name'),
+        description: this.model.get('description'),
+        groups: displayGroups,
+        steps: this.model.get('steps')
+      }));
+
+
+      $('.sortable').sortable({
+        items: '.js-recipe-order',
+        placeholder : '<div class="recipeStep--sortable"></div>'
+      }).bind('sortupdate', function(e, ui) {
+        me.saveCurrentOrder();
+      });
+    },
+    groupDisplayInfo: function(steps) {
+      var byGroups = _.groupBy(steps, function(step) {
+        //Fix up when I get real step objects here
+        return step.groupId;
+      });
+      return byGroups;
+    },
+    saveCurrentOrder: function() {
+      console.log('saveCurrentOrder');
+    }
+  });
+
+  return RecipeView;
 });
 
 'use strict';
@@ -17984,6 +18395,7 @@ define('router',[
 	'backbone',
 	'models/settings',
 	'models/temperature',
+	'collections/recipes',
 	'views/container',
 	'views/home',
 	'views/settings',
@@ -17991,16 +18403,17 @@ define('router',[
 	'views/timer',
 	'views/startBrew',
 	'views/recipes',
-], function($, _, Backbone, SettingsModel, TemperatureModel, ContainerView, HomeView, SettingsView, TemperatureView, TimerView, StartBrewView, RecipesView){
+	'views/recipe',
+], function($, _, Backbone, SettingsModel, TemperatureModel, Recipes, ContainerView, HomeView, SettingsView, TemperatureView, TimerView, StartBrewView, RecipesView, RecipeView){
 	var AppRouter = Backbone.Router.extend({
 		routes: {
-			// TEMP '': 'home',
-			'': 'startBrew',
+			'': 'home',
 			'settings': 'settings',
 			'temperature': 'temperature',
 			'timer': 'timer',
-			'recipes': 'recipes'
-			//'start': 'startBrew'
+			'recipes': 'recipes',
+			'recipe/:id': 'recipe',
+			'start': 'startBrew'
 		}
 	});
 
@@ -18038,9 +18451,17 @@ define('router',[
 			containerView.changeView(startBrewView);
 		});
 
-	appRouter.on('route:recipes', function(){
-		containerView.changeView(recipesView);
-	});
+		appRouter.on('route:recipes', function(){
+			containerView.changeView(recipesView);
+		});
+
+		appRouter.on('route:recipe', function(id){
+			var recipe  = Recipes.get(id),
+				recipeView = new RecipeView({
+					model: recipe
+				});
+			containerView.changeView(recipeView);
+		});
 
 		Backbone.router = appRouter;
 
@@ -18063,6 +18484,9 @@ define('app',[
 	'router',
 ], function($, _, Backbone, Router){
 	var initialize = function(){
+		//Setup namespace
+		window.Alino = {};
+
 		Router.initialize();
 		bindEvents();
 
@@ -18115,12 +18539,12 @@ require.config({
 });
 
 //REINSTATE FOR MOBILE
-document.addEventListener('deviceready', function() {
+//document.addEventListener('deviceready', function() {
 	//window.FastClick.attach(document.body);
 	require(['app'], function (App) {
 			App.initialize();
 	});
-}, true);
+//}, true);
 
 define("main", function(){});
 }());

@@ -1,33 +1,56 @@
 /*global define*/
 
 define([
-		'underscore',
-		'backbone',
-		'models/recipe',
-		'models/group',
-		'modules/helpers'
-], function (_, Backbone, Recipe, Group) {
-		'use strict';
+	'backbone',
+	'modules/helpers',
+	'models/group'
+], function (Backbone, Helpers, Group) {
+	'use strict';
 
-		var GroupCollection = Backbone.Collection.extend({
-			model: Group,
-			initialize: function() {
+	var defaultGroups = [
+		{
+			id: 1,
+			name: 'Pre-mash',
+			order: 1
+		},
+		{
+			id: 2,
+			name: 'Mash',
+			order: 2
+		},
+		{
+			id: 3,
+			name: 'Pre boil',
+			order: 3
+		},
+		{
+			id: 4,
+			name: 'Boil',
+			order: 4
+		}
+	];
 
+	var GroupCollection = Backbone.Collection.extend({
+		storageKey: 'bGroups',
+		model: Group,
+		initialize: function() {
+			this.loadFromLocalStorage();
+			if (!this.models.length) {
+				this.addDefaultGroups();
 			}
-		});
+		},
+		loadFromLocalStorage: function() {
+			Helpers.loadFromLocalStorage(this);
+		},
+		saveToLocalStorage: function() {
+			Helpers.saveToLocalStorage(this);
+		},
+		addDefaultGroups: function() {
+			defaultGroups.forEach(function(group) {
+				this.add(group);
+			}.bind(this));
+		}
+	});
 
-		return new GroupCollection([
-			{
-				id: 1,
-				name: 'Mash',
-				order: 1,
-				steps: [1, 2, 3]
-			},
-			{
-				id: 2,
-				name: 'Boil',
-				order: 2,
-				steps: [5, 6, 7, 8]
-			}
-		]);
+	return new GroupCollection();
 });

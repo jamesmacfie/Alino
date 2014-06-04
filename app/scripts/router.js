@@ -4,74 +4,111 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'models/settings',
-	'models/temperature',
+	'modules/helpers',
 	'collections/recipes',
-	'views/container',
+	'collections/steps',
+	'models/step',
 	'views/home',
-	'views/settings',
 	'views/temperature',
-	'views/timer',
-	'views/startBrew',
-	'views/recipes',
 	'views/recipe',
-], function($, _, Backbone, SettingsModel, TemperatureModel, Recipes, ContainerView, HomeView, SettingsView, TemperatureView, TimerView, StartBrewView, RecipesView, RecipeView){
+	'views/recipes',
+	'views/step',
+	'views/tools',
+	'views/notifications',
+	'views/settings'
+], function($, _, Backbone, Helpers, Recipes, Steps, Step, HomeView, TemperatureView, RecipeView, RecipesView, StepView, ToolsView, NotificationsView, SettingsView){
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'': 'home',
-			'settings': 'settings',
 			'temperature': 'temperature',
-			'timer': 'timer',
 			'recipes': 'recipes',
-			'recipe/:id': 'recipe',
-			'start': 'startBrew'
+			'recipe/new': 'newRecipe',
+			'recipe/edit/:recipeId': 'editRecipe',
+			'recipe/edit/:recipeId/step/:stepId': 'editStep',
+			'recipe/edit/:recipeId/step/new/:groupId': 'newStep',
+			'tools': 'tools',
+			'notifications': 'notifications',
+			'settings': 'settings'
 		}
 	});
 
+	var AppView = function() {
+		this.showView = function(view) {
+			if (this.currentView && 'beforeClose' in this.currentView){
+				this.currentView.beforeClose();
+			}
+
+			this.currentView = view;
+			this.currentView.render();
+
+			$('#main').html(this.currentView.el);
+
+			if ('afterRender' in this.currentView) {
+				this.currentView.afterRender();
+			}
+		};
+	};
+
 	var initialize = function(){
 		var appRouter = new AppRouter(),
-			homeView = new HomeView(),
-			settingsView = new SettingsView({
-				model: SettingsModel
-			}),
-			temperatureView = new TemperatureView({
-				model: TemperatureModel
-			}),
-			timerView = new TimerView(),
-			containerView = new ContainerView(),
-			startBrewView = new StartBrewView(),
-			recipesView = new RecipesView();
+			appView = new AppView();
 
 		appRouter.on('route:home', function(){
-			containerView.changeView(homeView);
-		});
-
-		appRouter.on('route:settings', function(){
-			containerView.changeView(settingsView);
+			appView.showView(new HomeView());
 		});
 
 		appRouter.on('route:temperature', function(){
-			containerView.changeView(temperatureView);
-		});
-
-		appRouter.on('route:timer', function(){
-			containerView.changeView(timerView);
-		});
-
-		appRouter.on('route:startBrew', function(){
-			containerView.changeView(startBrewView);
+			appView.showView(new TemperatureView());
 		});
 
 		appRouter.on('route:recipes', function(){
-			containerView.changeView(recipesView);
+			appView.showView(new RecipesView());
 		});
 
-		appRouter.on('route:recipe', function(id){
+		appRouter.on('route:newRecipe', function(){
+			appView.showView(new RecipesView());
+		});
+
+		appRouter.on('route:editRecipe', function(id){
 			var recipe  = Recipes.get(id),
 				recipeView = new RecipeView({
 					model: recipe
 				});
-			containerView.changeView(recipeView);
+			appView.showView(recipeView);
+		});
+
+		appRouter.on('route:editStep', function(recipeId, stepId){
+			var step  = Steps.get(stepId),
+				stepView = new StepView({
+					model: step
+				});
+			stepView.recipe = Recipes.get(recipeId);
+			appView.showView(stepView);
+		});
+
+		appRouter.on('route:newStep', function(recipeId, groupId){
+			var step  = new Step({
+					name: 'New brew step',
+					groupId: groupId
+				}),
+				stepView = new StepView({
+					model: step,
+				});
+
+			stepView.recipe = Recipes.get(recipeId);
+			appView.showView(stepView);
+		});
+
+		appRouter.on('route:tools', function(){
+			appView.showView(new ToolsView());
+		});
+
+		appRouter.on('route:notifications', function(){
+			appView.showView(new NotificationsView());
+		});
+
+		appRouter.on('route:settings', function(){
+			appView.showView(new SettingsView());
 		});
 
 		Backbone.router = appRouter;
@@ -80,6 +117,8 @@ define([
 			pushState: true
 		});
 	};
+
+
 	return {
 		initialize: initialize
 	};

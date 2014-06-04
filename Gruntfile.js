@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 		watch: {
 			options: {
 				nospawn: true,
-				livereload: true
+				livereload: false
 			},
 			coffee: {
 				files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -377,7 +377,7 @@ module.exports = function (grunt) {
 				'jst',
 				'compass',
 				'connect:test',
-				'mocha',
+				//'mocha',
 				'watch:test'
 			];
 

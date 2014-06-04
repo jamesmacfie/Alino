@@ -5,50 +5,28 @@ define([
 	'underscore',
 	'backbone',
 	'templates',
-	'modules/notificationsounds',
-	'models/bluetooth'
-], function ($, _, Backbone, JST, NotificationSounds, Bluetooth) {
+	'modules/helpers'
+], function ($, _, Backbone, JST, Helpers) {
 	var SettingsView = Backbone.View.extend({
-		el: '#settingsContainer',
-		events: {
-			'change select': 'onChangeHandler',
-			'change input': 'onChangeHandler'
-		},
 		template: JST['app/scripts/templates/settings.ejs'],
+		events: {
+		},
 		initialize: function() {
+			this.bindEvents();
+		},
+		bindEvents: function() {
 
 		},
 		render: function() {
-			this.renderPage();
+			this.$el.html(this.template());
 		},
-		renderPage: function() {
-			this.$el.html(this.template({
-				sounds: NotificationSounds.sounds,
-				notification: this.model.get('notification'),
-				sms: this.model.get('sms'),
-				device: this.model.get('device'),
-				devices: Bluetooth.get('devices')
-			}));
-		},
-		onChangeHandler: function(event){
-			var $target = $(event.currentTarget),
-				value = $target.val(),
-				property = $target.data('property'),
-				saveObj = {};
-
-			saveObj[property] = value;
-
-			this.model.set(saveObj);
-			this.model.saveToLocalStorage();
-
-			if (property === 'device') {
-				this.setDevice(value);
-			}
-		},
-		setDevice: function(address) {
-			Bluetooth.connect(address);
+		afterRender: function() {
+			Helpers.setTitleInfo({
+				name: 'Settings',
+				icon: 'settings',
+				backgroundColor: 'green'
+			});
 		}
-
 	});
 
 	return SettingsView;

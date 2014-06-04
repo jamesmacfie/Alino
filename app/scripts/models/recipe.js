@@ -9,7 +9,7 @@ define([
 		var RecipeModel = Backbone.Model.extend({
 			defaults: {
 				name: '',
-				groups: []
+				steps: []
 			}
 		});
 

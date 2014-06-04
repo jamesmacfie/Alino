@@ -1,8 +1,4 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
 		<head>
 				<meta charset="utf-8">
 				<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,36 +14,32 @@
 					<nav>
 						<h2 class="navigationItem navigationItem-title">Menu</h2>
 						<a class="navigationItem navigationItem-link js-toggle-menu" href="/">
-							<i class="navigationIcon navigationIcon-home icon icon-home"></i>Home
+							<i class="navigationIcon background-blue icon icon-home"></i>Home
 						</a>
 						<a class="navigationItem navigationItem-link js-toggle-menu" href="/temperature">
-							<i class="navigationIcon navigationIcon-temperature icon icon-temperature"></i>Temperature
+							<i class="navigationIcon background-orange icon icon-temperature"></i>Temperature
 						</a>
 						<a class="navigationItem navigationItem-link js-toggle-menu" href="/recipes">
-							<i class="navigationIcon navigationIcon-recipes icon icon-beer"></i>Recipes
+							<i class="navigationIcon background-pink icon icon-beer"></i>Recipes
 						</a>
-						<a class="navigationItem navigationItem-link js-toggle-menu" href="/timer">
-							<i class="navigationIcon navigationIcon-timer icon icon-timer"></i>Timers
+						<a class="navigationItem navigationItem-link js-toggle-menu" href="/tools">
+							<i class="navigationIcon background-turquoise icon icon-stethoscope"></i>Tools
+						</a>
+						<a class="navigationItem navigationItem-link js-toggle-menu" href="/notifications">
+							<i class="navigationIcon background-yellow icon icon-bell"></i>Notifications
 						</a>
 						<a class="navigationItem navigationItem-link js-toggle-menu" href="/settings">
-							<i class="navigationIcon navigationIcon-settings icon icon-settings"></i>Settings
+							<i class="navigationIcon background-green icon icon-settings"></i>Settings
 						</a>
 					</nav>
 				</div>
-				<div id="titleContainer" class="titleContainer"></div>
-				<div class="container" id="homeContainer"></div>
-				<div class="container" id="temperatureContainer"></div>
-				<div class="container" id="timerContainer"></div>
-				<div class="container" id="settingsContainer"></div>
-				<div class="container" id="startBrewContainer"></div>
-				<div class="container" id="recipesContainer"></div>
-				<div class="container" id="recipeContainer"></div>
+				<div id="titleBar" class="titleBar js-title-color background-blue">
+					<i class="icon icon-reorder menuIcon js-toggle-menu"></i>
+					<h1 class="pageTitle"><i class="icon icon-home pageTitle-icon js-title-icon"></i><span class="js-title-name">Home<span></h1>
+				</div>
 
-				<audio id="soundOne" src="sounds/1.mp3"></audio>
-				<audio id="soundTwo" src="sounds/1.mp3"></audio>
-				<audio id="soundThree" src="sounds/1.mp3"></audio>
-				<audio id="soundFour" src="sounds/1.mp3"></audio>
-				<audio id="soundFive" src="sounds/1.mp3"></audio>
+				<div id="titleContainer" class="titleContainer"></div>
+				<div class="container" id="main"></div>
 
 				<!-- REINSTATE FOR MOBILE
 				<script src="cordova.js"></script>

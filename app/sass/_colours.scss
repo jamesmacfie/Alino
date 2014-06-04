@@ -1,0 +1,48 @@
+.background-blue {
+	background-color: $background-blue;
+}
+
+.background-orange {
+	background-color: $background-orange;
+}
+
+.background-yellow {
+	background-color: $background-yellow;
+}
+
+.background-green {
+	background-color: $background-green;
+}
+
+.background-pink {
+	background-color: $background-pink;
+}
+
+.background-turquoise {
+	background-color: $background-turquoise;
+}
+
+//Discontinued
+.titleBar-home {
+  background-color: $home-navigation-background-color;
+}
+
+.titleBar-settings {
+	background-color: $settings-navigation-background-color;
+}
+
+.titleBar-recipes, .titleBar-recipe, .titleBar-step {
+	background-color: $recipes-navigation-background-color;
+}
+
+.titleBar-start {
+	background-color: $recipes-navigation-background-color;
+}
+
+.titleBar-temperature {
+	background-color: $temperature-navigation-background-color;
+}
+
+.titleBar-timer {
+	background-color: $timer-navigation-background-color;
+}
