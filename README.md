@@ -3,40 +3,19 @@ Alino
 
 ## What is Alino
 
-Alino is a small app to help the home brewer keep better tabs on the daily brew process. This app partners with a small Arduino project to keep track of the brews temperature. 
+Alino is a small app to help the home brewer keep better tabs on the daily brew process. This app partners with a small Arduino project to keep track of the brews temperature. I'm currently extending it to automate certain parts of the brew day as well as just keeping track of the temperature and timer.
 
 #### So I need to get this working on my phone and put together an arduino project?
 
-Yip, that's about it. I've only tested this so far on my setup at home (a Nexus 5), but getting the app on your phone via Cordova's pretty easy. And the Arduino project isn't complicated, even for someone who has never used it.
+Yip, that's about it. I've only tested this so far on my setup at home (a Nexus 5), but getting the app on your phone via Cordova's pretty easy. I've recently removed the code from this repo that holds the Android/Cordova stuff explicitly, but I'll add that back in once I have a proper working version. It is in this repo in an older commit if you really want to find it.
 
 The app works independently of the Arduino project so can be used without the real time temperature monitor. The app can still be used as a timer app without a working temperature panel.
 
-# What do I need to run this?
+### Plans
 
-There are two components to Alino. The first is the Cordova app that runs on an Android phones (Android only at the moment) and the second is the sketch that needs to be uploaded to an Arduino.
-
-## Running the Cordova app
-
-There's a grunt task called `deploy` that I've put inside the `gruntfile`. This takes care of both building and running the Cordova app on any device that is plugged into your computer in debugging mode. At the moment I am commit build products for the Cordova app. If this changes these docs will be updated to let you know how to install the required Cordova plusing etc.
-
-Assuming you have cloned this repo, you simply need to navigate into the root directory and:
-
- * Running `npm install`
- * Running `grunt deploy`
-
-## Putting together the Arduino project
-
-Put together the schematic outlined below:
-
-![](https://raw.githubusercontent.com/jamesmacfie/Alino/master/Arduino/sketch.png)
-
-Now open up the sketch in the `arduino` folder. Upload this to your Arduino device as you normally would (for me this is usually via USB).
-
-When you've uploaded the sketch and the Arduino is working as it should (blinking lights and what not), go to the 'Settings' menu on your Cordova app. From there you can select the Bluetooth device from the appropriate dropdown. Once selected (it's often listed as HC-06), the app will start listening to the Arduino and respond to any temperature updates.
-
-
-
-
-
-
-
+This is currently the v2 work in progress. What I want:
+ - to be able to store common 'recipes' so that timers/ideal temps can be easily brought up on brew day without too much trouble.
+ - the ability for the app to talk back to the Arduino via Bluetooth to do cool things like turn on a solenoid valve or turn an heating element on and off
+ - play sounds when a timer is up or a temp is met
+ - send an SMS when a timer is up or a temp is met
+ - tweet the current progress
