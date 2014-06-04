@@ -8,13 +8,15 @@ define([
 	'modules/helpers',
 	'collections/groups',
 	'collections/steps',
+	'collections/recipes',
 	'libs/html.sortable',
-], function ($, _, Backbone, JST, Helpers, Groups, Steps) {
+], function ($, _, Backbone, JST, Helpers, Groups, Steps, Recipes) {
 	var RecipeView = Backbone.View.extend({
 		template: JST['app/scripts/templates/recipe.ejs'],
 		events: {
 			'click .js-edit-step': 'onEditStepClickHandler',
-			'click .js-new-step': 'onNewStepClickHandler'
+			'click .js-new-step': 'onNewStepClickHandler',
+			'click .js-save-recipe': 'onSaveRecipeClickHandler'
 		},
 		initialize: function() {
 			this.bindEvents();
@@ -92,6 +94,31 @@ define([
 				groupId = $target.parents('.group').data('id');
 
 			Backbone.history.navigate('recipe/edit/' + this.model.get('id') + '/step/new/' + groupId, {trigger: true});
+		},
+		onSaveRecipeClickHandler: function(event) {
+			var name = $('[data-property="name"]').val(),
+				description = $('[data-property="description"]').val(),
+				validated = true; //this.validateForm(name, description);
+
+			if (validated) {
+				this.model.set({
+					name: name,
+					description: description
+				});
+
+				if (this.newRecipe) {
+					//Give this new recipe a random ID and save it to the recipe collection
+					this.model.set('id', Helpers.randomId());
+					Recipes.add(this.model);
+					Recipes.saveToLocalStorage();
+				}
+			} else {
+				console.log('SHIT!');
+			}
+		},
+		validateForm: function() {
+			console.log('Validate the recipe here');
+			return true;
 		}
 	});
 

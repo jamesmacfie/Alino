@@ -84,8 +84,13 @@ define([
 			return true;
 		},
 		addToCollections: function() {
+			//Add step to collection and save to local storage
 			Steps.add(this.model);
+			Steps.saveToLocalStorage();
+
+			//Add to recipe and save recipes collection to local storage
 			this.recipe.get('steps').push(this.model.id);
+			Recipes.saveToLocalStorage();
 		}
 	});
 
