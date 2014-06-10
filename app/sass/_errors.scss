@@ -1,0 +1,14 @@
+.errorHolder {
+	border: $error-border-width solid $error-color;
+	border-radius: $error-border-radius;
+	margin: $container-padding 0;
+	padding: $container-padding;
+	width: 100%;
+}
+
+.errors {
+	color: $secondary-color;
+	font-size: $label-font-size;
+	margin: 0;
+	padding-left: $container-padding * 2;
+}

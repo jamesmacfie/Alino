@@ -68,6 +68,22 @@ define([
 				});
 
 				localStorage.setItem(storageKey || ctx.storageKey, JSON.stringify(objectToSave));
+			},
+			displayErrors: function(errors) {
+				var errorBox = $('#errors'),
+					displayHtml = '';
+
+				if (!errorBox.length) {
+					console.error('There\'s no error box on the page!');
+					return;
+				}
+
+				errors.forEach(function(err) {
+					displayHtml += '<li class="errors--error">' + err + '</li>';
+				});
+
+				errorBox.html('<ul class="errors">' + displayHtml + '</ul>');
+				errorBox.show();
 			}
 		};
 	}

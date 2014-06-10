@@ -86,7 +86,7 @@ define([
 					this.addToCollections();
 				}
 			} else {
-				console.error(validation.errors);
+				Helpers.displayErrors(validation.errors);
 				return false;
 			}
 		},
