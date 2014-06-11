@@ -28,6 +28,10 @@ a {
 	text-decoration: none;
 }
 
+p {
+	font-size: $default-text-size;
+}
+
 button {
 	background: $control-background-color;
 	border: 0;

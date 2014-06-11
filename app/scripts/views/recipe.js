@@ -110,8 +110,8 @@ define([
 					//Give this new recipe a random ID and save it to the recipe collection
 					this.model.set('id', Helpers.randomId());
 					Recipes.add(this.model);
-					Recipes.saveToLocalStorage();
 				}
+				Recipes.saveToLocalStorage();
 			} else {
 				console.log('SHIT!');
 			}

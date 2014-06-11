@@ -10,6 +10,7 @@ $base-color: #fff;
 $secondary-color: #acacad;
 $base-font: $opensans;
 $base-weight: 100;
+$default-text-size: 12px;
 
 $control-background-color: #525252;
 $control-active-color: #0099CC;
@@ -136,7 +137,7 @@ $toggle-padding: 1px;
 $toggle-inner-shadow: rgba(255, 255, 255, 0.3);
 $toggle-inner-shadow-dimensions:  0 1px 0;
 $toggle-border-radius: 2px;
-$toggle-font-size: 12px;
+$toggle-font-size: $default-text-size;
 
 /* Checkbox */
 $checkbox-dimensions: 14px;

@@ -4,9 +4,10 @@ define([
 		'underscore',
 		'backbone',
 		'collections/groups',
+		'collections/steps',
 		'modules/helpers',
 		'models/recipe'
-], function (_, Backbone, Groups, Helpers, Recipe) {
+], function (_, Backbone, Groups, Steps, Helpers, Recipe) {
 		'use strict';
 
 		var RecipeCollection = Backbone.Collection.extend({
@@ -17,9 +18,53 @@ define([
 			},
 			loadFromLocalStorage: function() {
 				Helpers.loadFromLocalStorage(this);
+				this.loadChildren();
 			},
-			saveToLocalStorage: function() {
+			saveToLocalStorage: function(ignoreRecipeSteps) {
 				Helpers.saveToLocalStorage(this);
+
+				if (!ignoreRecipeSteps) {
+					this.saveRecipeSteps();
+				}
+			},
+			loadChildren: function() {
+				var recipeLen = this.length,
+					stepArray = [],
+					steps,
+					current;
+
+				for (var i = 0; i < recipeLen; i++) {
+					current = this.at(i);
+					steps = current.get('steps');
+					stepArray = steps.map(function(stepId) {
+							var colStep = Steps.get(stepId);
+							return colStep;
+						}).filter(function(step) {
+							return step !== undefined;
+						});
+					current.set('steps', stepArray);
+				}
+				console.log(stepArray);
+			},
+			saveRecipeSteps: function() {
+				//debugger;
+				var recipeLen = this.length,
+					steps,
+					stepLen,
+					step,
+					current;
+
+				for (var i = 0; i < recipeLen; i++) {
+					current = this.at(i);
+					steps = current.get('steps');
+					stepLen = Steps.length;
+					for (var j = 0; j < stepLen; j++) {
+						step = Steps.get(steps[j]);
+						if (step) {
+							console.log(step.get('name'));
+						}
+					}
+				}
 			}
 		});
 

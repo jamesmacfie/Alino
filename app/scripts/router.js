@@ -8,6 +8,7 @@ define([
 	'collections/recipes',
 	'collections/steps',
 	'models/step',
+	'models/recipe',
 	'views/home',
 	'views/temperature',
 	'views/recipe',
@@ -16,13 +17,14 @@ define([
 	'views/tools',
 	'views/notifications',
 	'views/settings'
-], function($, _, Backbone, Helpers, Recipes, Steps, Step, HomeView, TemperatureView, RecipeView, RecipesView, StepView, ToolsView, NotificationsView, SettingsView){
+], function($, _, Backbone, Helpers, Recipes, Steps, Step, Recipe, HomeView, TemperatureView, RecipeView, RecipesView, StepView, ToolsView, NotificationsView, SettingsView){
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'': 'home',
 			'temperature': 'temperature',
 			'recipes': 'recipes',
 			'recipe/new': 'newRecipe',
+			'recipe/new/first': 'newFirstRecipe',
 			'recipe/edit/:recipeId': 'editRecipe',
 			'recipe/edit/:recipeId/step/:stepId': 'editStep',
 			'recipe/edit/:recipeId/step/new/:groupId': 'newStep',
@@ -67,6 +69,15 @@ define([
 
 		appRouter.on('route:newRecipe', function(){
 			appView.showView(new RecipesView());
+		});
+
+		appRouter.on('route:newFirstRecipe', function(){
+			var recipe = new Recipe(),
+				recipeView = new RecipeView({
+					firstRecipe: true,
+					model: recipe
+				});
+			appView.showView(recipeView);
 		});
 
 		appRouter.on('route:editRecipe', function(id){

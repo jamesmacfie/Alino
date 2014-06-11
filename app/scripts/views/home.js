@@ -13,6 +13,8 @@ define([
 		startTemplate: JST['app/scripts/templates/homeStart.ejs'],
 		selectTemplate: JST['app/scripts/templates/homeSelect.ejs'],
 		events: {
+			'click .js-createRecipe': 'onCreateRecipeClickHandler',
+			'click .js-loadDefaults': 'onLoadDefaultsClickHandler'
 		},
 		initialize: function() {
 			this.bindEvents();
@@ -21,9 +23,10 @@ define([
 
 		},
 		render: function() {
-			if (!window.Alino.activeRecipe) {
-				//console.log(Recipes);
-				this.$el.html(this.startTemplate());
+			if (!Helpers.brewInProgress()) {
+				this.$el.html(this.startTemplate({
+					recipeCount: Recipes.length
+				}));
 				return;
 			}
 			this.$el.html(this.defaultTemplate());
@@ -34,6 +37,12 @@ define([
 				icon: 'home',
 				backgroundColor: 'blue'
 			});
+		},
+		onCreateRecipeClickHandler: function(event) {
+			Backbone.history.navigate('recipe/new/first', {trigger: true});
+		},
+		onLoadDefaultsClickHandler: function(event) {
+
 		}
 	});
 

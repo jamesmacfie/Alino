@@ -5,6 +5,9 @@ define([
 	'underscore'],
 	function ($, _) {
 		return {
+			brewInProgress: function() {
+				return window.Alino.activeRecipe;
+			},
 			randomId: function() {
 				return Math.floor(Math.random() * 1000000);
 			},
