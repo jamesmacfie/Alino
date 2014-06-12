@@ -35,7 +35,7 @@
                 <span class="recipeStep--meta recipeStep--meta--icon <% if (!step.notification) { %>recipeStep--meta--icon-disabled<% } %>"><i class="icon icon-volume-up"></i> </span>
                 <span class="recipeStep--meta recipeStep--meta--icon <% if (!step.sms) { %>recipeStep--meta--icon-disabled<% } %>"><i class="icon icon-envelope"></i> </span>
               </div>
-              <p class="recipeStep--title js-edit-step"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText"><%= j + 1 %></span></span> <%= step.name %> <i class="icon icon-pencil right"></i></p>
+              <p class="recipeStep--title js-edit-step"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText js-step-number"><%= j + 1 %></span></span> <%= step.name %> <i class="icon icon-pencil right"></i></p>
               <p class="recipeStep--description"><%= step.description %></p>
             </div>
           </div>

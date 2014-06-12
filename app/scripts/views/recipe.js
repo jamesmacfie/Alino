@@ -82,8 +82,8 @@ define([
 			//Update the sort numbers in the sort parent
 			var $target = $(event.currentTarget);
 
-			$target.find('.js-recipe-order').each(function(i, el) {
-				$(el).find('.iconHolder--iconText').text(i++);
+			$target.find('.js-step-number').each(function(index) {
+				$(this).text(index + 1);
 			});
 		},
 		onEditStepClickHandler: function(event) {
@@ -152,7 +152,7 @@ define([
 		},
 		onCancelRecipeClickHandler: function() {
 			Recipes.clean();
-		}
+		},
 	});
 
 	return RecipeView;
