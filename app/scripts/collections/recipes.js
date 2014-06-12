@@ -28,23 +28,21 @@ define([
 				}
 			},
 			loadChildren: function() {
-				var recipeLen = this.length,
-					stepArray = [],
+				var stepArray = [],
 					steps,
-					current;
+					mapFunction = function(stepId) {
+						var colStep = Steps.get(stepId);
+						return colStep;
+					},
+					filterFunction = function(step) {
+						return step !== undefined;
+					};
 
-				for (var i = 0; i < recipeLen; i++) {
-					current = this.at(i);
-					steps = current.get('steps');
-					stepArray = steps.map(function(stepId) {
-							var colStep = Steps.get(stepId);
-							return colStep;
-						}).filter(function(step) {
-							return step !== undefined;
-						});
-					current.set('steps', stepArray);
-				}
-				console.log(stepArray);
+				this.forEach(function(recipe) {
+					steps = recipe.get('steps');
+					stepArray = steps.map(mapFunction).filter(filterFunction);
+					recipe.set('steps', stepArray);
+				}.bind(this));
 			},
 			saveRecipeSteps: function() {
 				//debugger;

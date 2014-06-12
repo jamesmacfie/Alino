@@ -25,11 +25,12 @@ define([
 
 		},
 		render: function() {
-			var stepFilter = function(groupId) {
-				return _.filter(Steps.models, function(step) {
-					return step.get('groupId') === groupId;
-				});
-			};
+			var recipe = this.model,
+				stepFilter = function(groupId) {
+					return _.filter(recipe.get('steps'), function(step) {
+						return step.get('groupId') === groupId;
+					});
+				};
 
 			var stepMapper = function(step) {
 				return {
