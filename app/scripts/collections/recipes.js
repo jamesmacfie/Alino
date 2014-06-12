@@ -59,13 +59,19 @@ define([
 			},
 			clean: function() {
 				//Removes models from the collection that aren't in local storage.
-				var saved = Helpers.returnFromLocalStorage(this.storageKey);
-				console.log(saved);
-				this.forEach(function(recipe) {
-					if (saved.get(recipe.id) === undefined) {
+				var saved = Helpers.returnFromLocalStorage(this.storageKey),
+					savedRecipe;
+
+				var checkRemove = function(recipe) {
+					savedRecipe = _.find(saved, function(savedRecipe) {
+						return savedRecipe.id === recipe.id;
+					});
+
+					if (savedRecipe === undefined) {
 						this.remove(recipe);
 					}
-				});
+				};
+				this.forEach(checkRemove, this);
 			}
 		});
 

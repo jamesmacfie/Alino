@@ -1,5 +1,5 @@
 <div class="panel">
-  <h3 class="panelTitle"><a href="/recipes" class="js-save-recipe"><i class="icon icon-angle-left panelTitle--icon"></i>Save and return to recipes</a></h3>
+  <h3 class="panelTitle"><a href="/recipes" class="js-save-recipe <% if (firstRecipe) { %>js-return-home<% } %>"><i class="icon icon-angle-left panelTitle--icon"></i>Save and return <% firstRecipe ? 'home' : 'to recipes' %></a></h3>
   <div class="errorHolder" id="errors" style="display: none;"></div>
   <div class="form form-bottomless">
     <label class="label">Name</label>

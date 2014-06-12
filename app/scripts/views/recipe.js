@@ -59,7 +59,8 @@ define([
 			this.$el.html(this.template({
 				name: this.model.get('name'),
 				description: this.model.get('description'),
-				groups: _.map(Groups.models, groupMapper)
+				groups: _.map(Groups.models, groupMapper),
+				firstRecipe: this.firstRecipe
 			}));
 
 		},
@@ -67,7 +68,7 @@ define([
 			var me = this;
 
 			Helpers.setTitleInfo({
-				name: this.model.get('name'),
+				name: this.model.get('name') || 'New recipe',
 				icon: 'recipes',
 				backgroundColor: 'pink'
 			});
@@ -150,7 +151,6 @@ define([
 			};
 		},
 		onCancelRecipeClickHandler: function() {
-			console.log('Cancelling. Clean');
 			Recipes.clean();
 		}
 	});
