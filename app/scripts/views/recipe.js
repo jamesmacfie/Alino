@@ -150,6 +150,7 @@ define([
 			};
 		},
 		onCancelRecipeClickHandler: function() {
+			console.log('Cancelling. Clean');
 			Recipes.clean();
 		}
 	});

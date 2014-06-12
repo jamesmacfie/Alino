@@ -69,7 +69,8 @@ define([
 
 		appRouter.on('route:newRecipe', function(){
 			var recipe = new Recipe({
-					id: Helpers.randomId()
+					id: Helpers.randomId(),
+					steps: [] //Hack
 				}),
 				recipeView = new RecipeView({
 					model: recipe
@@ -79,7 +80,8 @@ define([
 
 		appRouter.on('route:newFirstRecipe', function(){
 			var recipe = new Recipe({
-					id: Helpers.randomId()
+					id: Helpers.randomId(),
+					steps: [] //Hack
 				}),
 				recipeView = new RecipeView({
 					firstRecipe: true,

@@ -61,6 +61,11 @@ define([
 				//Removes models from the collection that aren't in local storage.
 				var saved = Helpers.returnFromLocalStorage(this.storageKey);
 				console.log(saved);
+				this.forEach(function(recipe) {
+					if (saved.get(recipe.id) === undefined) {
+						this.remove(recipe);
+					}
+				});
 			}
 		});
 
