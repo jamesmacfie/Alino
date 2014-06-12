@@ -65,7 +65,7 @@ define([
 
 		},
 		afterRender: function() {
-			var me = this;
+			var updateNumbers = this.updateNumberedItems.bind(this);
 
 			Helpers.setTitleInfo({
 				name: this.model.get('name') || 'New recipe',
@@ -76,14 +76,25 @@ define([
 			$('.sortable').sortable({
 				items: '.js-recipe-order',
 				placeholder : '<div class="recipeStep--sortable"></div>'
-			}).bind('sortupdate', me.updateNumberedItems);
+			}).bind('sortupdate', updateNumbers);
 		},
 		updateNumberedItems: function(event) {
 			//Update the sort numbers in the sort parent
-			var $target = $(event.currentTarget);
+			var me = this,
+				$target = $(event.currentTarget);
 
-			$target.find('.js-step-number').each(function(index) {
-				$(this).text(index + 1);
+			$target.find('.js-recipe-order').each(function(index, el) {
+				var $el = $(el),
+					stepId = $el.data('id'),
+					order = index + 1,
+					step;
+
+				step = _.find(me.model.get('steps'), function(step) {
+					return step.id === stepId;
+				});
+
+				step.set('order', order);
+				$el.find('.js-step-number').text(order);
 			});
 		},
 		onEditStepClickHandler: function(event) {
