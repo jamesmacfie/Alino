@@ -1,5 +1,5 @@
 <div class="panel">
-	<h3 class="panelTitle"><a href="/recipe/edit/<%= recipe.id %>" class="js-save-step"><i class="icon icon-angle-left panelTitle--icon"></i>Save and return to <%= recipe.name %></a></h3>
+	<h3 class="panelTitle"><a href="/recipe/edit/<%= recipe.id %>" class="js-save-step"><i class="icon icon-angle-left panelTitle--icon"></i>Save and return to <%= recipe.name ? recipe.name : 'unknown recipe' %></a></h3>
 	<div class="errorHolder" id="errors" style="display: none;"></div>
 	<div class="form form-bottomless">
 		<label class="label">Name</label>

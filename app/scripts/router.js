@@ -68,11 +68,19 @@ define([
 		});
 
 		appRouter.on('route:newRecipe', function(){
-			appView.showView(new RecipesView());
+			var recipe = new Recipe({
+					id: Helpers.randomId()
+				}),
+				recipeView = new RecipeView({
+					model: recipe
+				});
+			appView.showView(recipeView);
 		});
 
 		appRouter.on('route:newFirstRecipe', function(){
-			var recipe = new Recipe(),
+			var recipe = new Recipe({
+					id: Helpers.randomId()
+				}),
 				recipeView = new RecipeView({
 					firstRecipe: true,
 					model: recipe
@@ -92,8 +100,16 @@ define([
 			var step  = Steps.get(stepId),
 				stepView = new StepView({
 					model: step
+				}),
+				recipe = Recipes.get(recipeId);
+
+			if (recipe === undefined) {
+				recipe = new Recipe({
+					id: recipeId
 				});
-			stepView.recipe = Recipes.get(recipeId);
+			}
+
+			stepView.recipe = recipe;
 			appView.showView(stepView);
 		});
 
@@ -104,9 +120,16 @@ define([
 				}),
 				stepView = new StepView({
 					model: step
-				});
+				}),
+				recipe = Recipes.get(recipeId);
 
-			stepView.recipe = Recipes.get(recipeId);
+			if (recipe === undefined) {
+				recipe = new Recipe({
+					id: recipeId
+				});
+			}
+
+			stepView.recipe = recipe;
 			stepView.newStep = true;
 			appView.showView(stepView);
 		});

@@ -92,11 +92,18 @@ define([
 		},
 		onNewStepClickHandler: function(event) {
 			var $target = $(event.currentTarget),
-				groupId = $target.parents('.group').data('id');
+				groupId = $target.parents('.group').data('id'),
+				colRecipe = Recipes.get(this.model.id);
+
+				if (colRecipe) {
+					colRecipe = this.model;
+				} else {
+					Recipes.add(this.model);
+				}
 
 			Backbone.history.navigate('recipe/edit/' + this.model.get('id') + '/step/new/' + groupId, {trigger: true});
 		},
-		onSaveRecipeClickHandler: function(event) {
+		onSaveRecipeClickHandler: function() {
 			var name = $('[data-property="name"]').val(),
 				description = $('[data-property="description"]').val(),
 				validated = true; //this.validateForm(name, description);

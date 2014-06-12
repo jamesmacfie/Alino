@@ -12,7 +12,8 @@ define([
 		template: JST['app/scripts/templates/recipes.ejs'],
 		events: {
 			'click .js-deleteRecipe': 'onDeleteRecipeClickHandler',
-			'click .js-editRecipe': 'onEditRecipeClickHandler'
+			'click .js-editRecipe': 'onEditRecipeClickHandler',
+			'click .js-createRecipe': 'onCreateRecipeClickHandler'
 		},
 		initialize: function() {
 			this.bindEvents();
@@ -37,11 +38,15 @@ define([
 			return $target.parents('.recipeStep').data('id');
 		} ,
 		onDeleteRecipeClickHandler: function(event) {
-			console.log('delete');
+			var id = this.getIdFromTarget(event.currentTarget);
+			console.log('delete Recipe', id);
 		},
 		onEditRecipeClickHandler: function(event) {
 			var id = this.getIdFromTarget(event.currentTarget);
 			Backbone.history.navigate('recipe/edit/' + id, {trigger: true});
+		},
+		onCreateRecipeClickHandler: function() {
+			Backbone.history.navigate('recipe/new', {trigger: true});
 		}
 	});
 
