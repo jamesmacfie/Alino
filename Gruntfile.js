@@ -326,8 +326,22 @@ module.exports = function (grunt) {
         },
         command: 'cd cordova && cordova build && cordova run'
       }
-    }
+    },
+		traceur: {
+	    options: {
+	      // traceur options here
+	    },
+	    custom: {
+	      files:{
+	        '../dist/traceur.js': ['scripts/**/*.js']
+	      }
+	    },
+	  }
 	});
+
+	grunt.loadNpmTasks('grunt-traceur');
+
+	grunt.registerTask('traceur', ['traceur']);
 
 	grunt.registerTask('createDefaultTemplate', function () {
 		grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
