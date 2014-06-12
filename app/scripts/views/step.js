@@ -83,7 +83,7 @@ define([
 				if (this.newStep) {
 					//Give this new step a random ID and save it to the recipe and Step collections
 					//this.model.set('id', Helpers.randomId());
-					this.recipe.get('steps').push(this.model.id);
+					this.recipe.get('steps').push(this.model);
 				}
 			} else {
 				Helpers.displayErrors(validation.errors);

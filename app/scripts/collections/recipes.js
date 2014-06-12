@@ -49,7 +49,6 @@ define([
 
 				this.forEach(function(recipe) {
 					steps = recipe.get('steps');
-					console.log('steps', steps);
 					steps.forEach(function(s) {
 						var step = Steps.get(s.id);
 						step = s;
@@ -57,6 +56,11 @@ define([
 				}.bind(this));
 
 				Steps.saveToLocalStorage();
+			},
+			clean: function() {
+				//Removes models from the collection that aren't in local storage.
+				var saved = Helpers.returnFromLocalStorage(this.storageKey);
+				console.log(saved);
 			}
 		});
 

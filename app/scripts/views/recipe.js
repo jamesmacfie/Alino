@@ -16,7 +16,8 @@ define([
 		events: {
 			'click .js-edit-step': 'onEditStepClickHandler',
 			'click .js-new-step': 'onNewStepClickHandler',
-			'click .js-save-recipe': 'onSaveRecipeClickHandler'
+			'click .js-save-recipe': 'onSaveRecipeClickHandler',
+			'click .js-cancel-recipe': 'onCancelRecipeClickHandler'
 		},
 		initialize: function() {
 			this.bindEvents();
@@ -106,27 +107,50 @@ define([
 		onSaveRecipeClickHandler: function() {
 			var name = $('[data-property="name"]').val(),
 				description = $('[data-property="description"]').val(),
-				validated = true; //this.validateForm(name, description);
+				validation = this.validateForm(name, description),
+				colRecipe = Recipes.get(this.model.id);
 
-			if (validated) {
+			if (validation.success) {
 				this.model.set({
 					name: name,
 					description: description
 				});
 
-				if (this.newRecipe) {
-					//Give this new recipe a random ID and save it to the recipe collection
-					this.model.set('id', Helpers.randomId());
+				if (colRecipe) {
+					colRecipe = this.model;
+				} else {
 					Recipes.add(this.model);
 				}
+
 				Recipes.saveToLocalStorage();
 			} else {
-				console.log('SHIT!');
+				Helpers.displayErrors(validation.errors);
+				return false;
 			}
 		},
-		validateForm: function() {
-			console.log('Validate the recipe here');
-			return true;
+		validateForm: function(name, description) {
+			var success = true,
+				errors = [];
+
+			if (!name.length) {
+				errors.push('You have to enter a name');
+			}
+
+			if (!description.length) {
+				errors.push('You have to enter a description');
+			}
+
+			if (errors.length) {
+				success = false;
+			}
+
+			return {
+				errors: errors,
+				success: success
+			};
+		},
+		onCancelRecipeClickHandler: function() {
+			Recipes.clean();
 		}
 	});
 

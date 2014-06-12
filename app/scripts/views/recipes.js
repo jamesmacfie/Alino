@@ -38,8 +38,12 @@ define([
 			return $target.parents('.recipeStep').data('id');
 		} ,
 		onDeleteRecipeClickHandler: function(event) {
-			var id = this.getIdFromTarget(event.currentTarget);
-			console.log('delete Recipe', id);
+			var id = this.getIdFromTarget(event.currentTarget),
+				recipeToRemove = Recipes.get(id);
+
+			Recipes.remove(recipeToRemove);
+			Recipes.saveToLocalStorage();
+			this.render();
 		},
 		onEditRecipeClickHandler: function(event) {
 			var id = this.getIdFromTarget(event.currentTarget);

@@ -41,6 +41,9 @@ define([
 					$titleContainer.addClass('background-' + config.backgroundColor);
 				}
 			},
+			returnFromLocalStorage: function(storageKey) {
+				return JSON.parse(localStorage.getItem(storageKey));
+			},
 			loadFromLocalStorage: function(ctx, storageKey) {
 				var local = localStorage.getItem(storageKey || ctx.storageKey),
 					setData = function(value) {
