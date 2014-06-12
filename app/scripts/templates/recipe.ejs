@@ -1,5 +1,5 @@
 <div class="panel">
-  <h3 class="panelTitle"><a href="/recipes" class="js-save-recipe <% if (firstRecipe) { %>js-return-home<% } %>"><i class="icon icon-angle-left panelTitle--icon"></i>Save and return <% firstRecipe ? 'home' : 'to recipes' %></a></h3>
+  <h3 class="panelTitle"><a href="/recipes" class="js-save-recipe <% if (firstRecipe) { %>js-return-home<% } %>"><i class="icon icon-angle-left panelTitle--icon"></i>Save and return <% if (firstRecipe) { %>home<% } else { %>to recipes<% } %></a></h3>
   <div class="errorHolder" id="errors" style="display: none;"></div>
   <div class="form form-bottomless">
     <label class="label">Name</label>
@@ -32,8 +32,9 @@
                     <span> <%= step.targetTemp %> &#186;C</span>
                   </div>
                 <% } %>
-                <span class="recipeStep--meta recipeStep--meta--icon <% if (!step.notification) { %>recipeStep--meta--icon-disabled<% } %>"><i class="icon icon-volume-up"></i> </span>
-                <span class="recipeStep--meta recipeStep--meta--icon <% if (!step.sms) { %>recipeStep--meta--icon-disabled<% } %>"><i class="icon icon-envelope"></i> </span>
+
+                <span class="recipeStep--meta recipeStep--meta--icon <% if (!step.notification) { %>recipeStep--meta--icon-disabled <% } else { %>recipeStep--meta--icon-glow <% } %>"><i class="icon icon-volume-up"></i> </span>
+                <span class="recipeStep--meta recipeStep--meta--icon <% if (!step.sms) { %>recipeStep--meta--icon-disabled<% } else { %>recipeStep--meta--icon-glow <% } %>"><i class="icon icon-envelope"></i> </span>
               </div>
               <p class="recipeStep--title js-edit-step"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText js-step-number"><%= j + 1 %></span></span> <%= step.name %> <i class="icon icon-pencil right"></i></p>
               <p class="recipeStep--description"><%= step.description %></p>
