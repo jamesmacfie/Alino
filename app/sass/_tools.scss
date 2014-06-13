@@ -1,0 +1,23 @@
+.tools {
+
+}
+
+.tool {
+	text-align: center;
+	display: inline-block;
+	padding-top: 30px;
+	width: 48%; /* This is a weird number */
+
+	&:nth-child(2n) {
+		margin-right: 1%;
+	}
+}
+
+.tool--icon {
+	font-size: 50px;
+}
+
+.tool--name {
+	color: $secondary-color;
+	text-transform: uppercase;
+}
