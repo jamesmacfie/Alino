@@ -15,9 +15,13 @@ define([
 	'views/recipes',
 	'views/step',
 	'views/tools',
+	'views/hydrometer',
+	'views/ph',
+	'views/pitch',
+	'views/units',
 	'views/notifications',
 	'views/settings'
-], function($, _, Backbone, Helpers, Recipes, Steps, Step, Recipe, HomeView, TemperatureView, RecipeView, RecipesView, StepView, ToolsView, NotificationsView, SettingsView){
+], function($, _, Backbone, Helpers, Recipes, Steps, Step, Recipe, HomeView, TemperatureView, RecipeView, RecipesView, StepView, ToolsView, HydrometerView, PhView, PitchView, UnitsView, NotificationsView, SettingsView){
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'': 'home',
@@ -29,6 +33,10 @@ define([
 			'recipe/edit/:recipeId/step/:stepId': 'editStep',
 			'recipe/edit/:recipeId/step/new/:groupId': 'newStep',
 			'tools': 'tools',
+			'hydrometer': 'hydrometer',
+			'ph': 'ph',
+			'pitch-rate': 'pitch',
+			'units': 'units',
 			'notifications': 'notifications',
 			'settings': 'settings'
 		}
@@ -138,6 +146,22 @@ define([
 
 		appRouter.on('route:tools', function(){
 			appView.showView(new ToolsView());
+		});
+
+		appRouter.on('route:hydrometer', function(){
+			appView.showView(new HydrometerView());
+		});
+
+		appRouter.on('route:ph', function(){
+			appView.showView(new PhView());
+		});
+
+		appRouter.on('route:pitch', function(){
+			appView.showView(new PitchView());
+		});
+
+		appRouter.on('route:units', function(){
+			appView.showView(new UnitsView());
 		});
 
 		appRouter.on('route:notifications', function(){

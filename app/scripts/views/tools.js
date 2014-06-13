@@ -10,6 +10,7 @@ define([
 	var ToolsView = Backbone.View.extend({
 		template: JST['app/scripts/templates/tools.ejs'],
 		events: {
+			'click .js-goto-page': 'onGotoPageHandler'
 		},
 		initialize: function() {
 			this.bindEvents();
@@ -26,6 +27,13 @@ define([
 				icon: 'stethoscope',
 				backgroundColor: 'turquoise'
 			});
+		},
+		onGotoPageHandler: function(event) {
+
+			var $el = $(event.currentTarget),
+				href =$el.data('href');
+
+			Backbone.history.navigate(href, {trigger: true});
 		}
 	});
 
