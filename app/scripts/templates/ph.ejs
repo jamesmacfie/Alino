@@ -1,1 +1,12 @@
-<p>ph</p>
+<div class="panel">
+	<h3 class="panelTitle">This will correct a pH reading based on the liquids temperature</h3>
+	<div class="form form-bottomless">
+		<label class="label">pH reading</label>
+		<input data-property="pH" class="input js-change" type="number" placeholder="What's the pH?" value="<%= pH %>" />
+
+		<label class="label">Temperature (&#186;C)</label>
+		<input data-property="temp" class="input js-change" type="number" placeholder="What's the liquidk temperature?" value="<%= temp %>" />
+
+	</div>
+	<p class="badass js-adjusted-pH"></p>
+</div>
