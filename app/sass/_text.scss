@@ -1,0 +1,21 @@
+.badass {
+	text-align: center;
+	font-family: $roboto;
+	font-size: $badass-font-size;
+	font-weight: 200;
+	margin: 0px;
+	padding-bottom: $badass-bottom-padding;
+	padding-top: $badass-top-padding;
+}
+
+.badass-red {
+	color: $badass-hot-color;
+}
+
+.badass-blue {
+	color: $badass-cold-color;
+}
+
+.badass-green {
+	color: $badass-ok-color;
+}

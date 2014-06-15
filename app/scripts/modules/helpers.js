@@ -90,6 +90,35 @@ define([
 
 				errorBox.html('<ul class="errors">' + displayHtml + '</ul>');
 				errorBox.show();
+			},
+			validateTemp: function(temp) {
+				var type = typeof temp;
+
+				if (type !== 'number' && type !== 'string') {
+					throw new Error('We can only convert numbers/strings');
+				}
+				if (type === 'string') {
+					temp = parseFloat(temp);
+				}
+				return temp;
+			},
+			celciusToFahrenheit: function(temp){
+				var returnVal;
+
+				temp = this.validateTemp(temp);
+
+				returnVal = (temp * (9/5)) + 32;
+
+				return parseFloat(returnVal.toFixed(2));
+			},
+			fahrenheitToCelcius: function(temp){
+				var returnVal;
+
+				temp = this.validateTemp(temp);
+
+				returnVal = (temp -32) * (5/9);
+
+				return parseFloat(returnVal.toFixed(2));
 			}
 		};
 	}

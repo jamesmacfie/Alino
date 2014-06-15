@@ -1,1 +1,12 @@
-<p>hydrometer</p>
+<div class="panel">
+	<h3 class="panelTitle">This will correct a hydometer reading based on wort temperature</h3>
+	<div class="form form-bottomless">
+		<label class="label">Gravity reading</label>
+		<input data-property="sg" class="input js-change" type="number" placeholder="What's the specific gravity?" value="<%= sg %>" />
+
+		<label class="label">Temperature (&#186;C)</label>
+		<input data-property="temp" class="input js-change" type="number" placeholder="What's the wort temperature?" value="<%= temp %>" />
+
+	</div>
+	<p class="badass js-adjusted-gravity"></p>
+</div>

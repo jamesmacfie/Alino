@@ -71,17 +71,17 @@ $panel-bottom-margin: $container-padding;
 
 $panel-title-icon-right-margin: $container-padding;
 
-/* Current Temp */
-$current-temp-font-size: 65px;
-$current-temp-bottom-padding: 30px;
-$current-temp-top-padding: 50px;
+/* Badass Text */
+$badass-font-size: 65px;
+$badass-bottom-padding: 30px;
+$badass-top-padding: 50px;
 
-$current-temp-hot-color: #f9472a;
-$current-temp-cold-color: #3da7de;
-$current-temp-ok-color: #61c227;
+$badass-hot-color: #f9472a;
+$badass-cold-color: #3da7de;
+$badass-ok-color: #61c227;
 
 /* Next time */
-$next-time-font-size: $current-temp-font-size;
+$next-time-font-size: $badass-font-size;
 $next-time-bottom-padding: 30px;
 $next-time-top-padding: 50px;
 
