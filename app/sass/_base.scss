@@ -32,7 +32,7 @@ p {
 	font-size: $default-text-size;
 }
 
-button {
+button, .button {
 	background: $control-background-color;
 	border: 0;
 	color: $control-color;
