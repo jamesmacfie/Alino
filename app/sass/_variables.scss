@@ -160,6 +160,7 @@ $popup-overlay-zindex: 100;
 $popup-overlay-background-color: #000;
 $popup-overlay-opacity: 0.7;
 $popup-border-radius: 2px;
+$popup-border-font-size: 14px;
 $popup-zindex: $popup-overlay-zindex + 1;
 $popup-width: 300px;
 $popup-inner-shadow-dimensions-from: $button-inner-shadow-dimensions-from;
@@ -169,12 +170,12 @@ $popup-inner-shadow-to: $button-inner-shadow-to;
 $popup-title-margin: $container-padding 0 0;
 $popup-title-padding: 0 0 $container-padding $container-padding;
 $popup-title-color: $control-active-color;
-$popup-font-size: 24px;
+$popup-font-size: 18px;
 $popup-border-width: 2px;
 $popup-border-color: $popup-title-color;
 $popup-inset-padding: $container-padding;
 $popup-button-margin: 0px;
-$popup-button-padding: 15px 36px;
+$popup-button-padding: 12px 35px;
 
 /* Recipe Steps */
 $recipe-step-border-color: #444;

@@ -39,8 +39,10 @@
 	background-color: $background-color;;
 	border-radius: 0;
 	float: left;
+	font-size: $popup-border-font-size;
 	margin: $popup-button-margin;
 	padding: $popup-button-padding;
+	text-transform: uppercase;
 	width: 50%;
 	box-shadow: none;
 	-webkit-box-shadow: none;
