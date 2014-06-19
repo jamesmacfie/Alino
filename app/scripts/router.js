@@ -19,8 +19,9 @@ define([
 	'views/ph',
 	'views/units',
 	'views/notifications',
-	'views/settings'
-], function($, _, Backbone, Helpers, Recipes, Steps, Step, Recipe, HomeView, TemperatureView, RecipeView, RecipesView, StepView, ToolsView, HydrometerView, PhView, UnitsView, NotificationsView, SettingsView){
+	'views/settings',
+	'views/brew',
+], function($, _, Backbone, Helpers, Recipes, Steps, Step, Recipe, HomeView, TemperatureView, RecipeView, RecipesView, StepView, ToolsView, HydrometerView, PhView, UnitsView, NotificationsView, SettingsView, BrewView){
 	var AppRouter = Backbone.Router.extend({
 		routes: {
 			'': 'home',
@@ -36,7 +37,8 @@ define([
 			'ph': 'ph',
 			'units': 'units',
 			'notifications': 'notifications',
-			'settings': 'settings'
+			'settings': 'settings',
+			'letsBrew': 'brew'
 		}
 	});
 
@@ -164,6 +166,10 @@ define([
 
 		appRouter.on('route:settings', function(){
 			appView.showView(new SettingsView());
+		});
+
+		appRouter.on('route:brew', function(){
+			appView.showView(new BrewView());
 		});
 
 		Backbone.router = appRouter;

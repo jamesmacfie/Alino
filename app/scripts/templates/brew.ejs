@@ -1,0 +1,23 @@
+<div class="panel">
+	<p><%= description %></p>
+	<button class="button-small button-spaced js-play-pause"><i class="icon icon-play"></i></button>
+	<button class="button-small button-spaced js-reset"><i class="icon icon-refresh"></i></button>
+</div>
+<% for(var i=0;i<groups.length;i++) {
+			var group = groups[i]; %>
+		<div class="group" data-id="<%= group.id %>">
+			<h3 class="group--title"><%= group.name %></h3>
+			<div class="sortable">
+				<% for(var j=0;j<group.steps.length;j++) {
+							var step = group.steps[j]; %>
+					<div class="recipeStep js-recipe-order" data-id="<%= step.id %>">
+						<div class="clearfix">
+							<p class="recipeStep--title"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText js-step-number"><%= j + 1 %></span></span> <%= step.name %><% if (step.notification) { %><span class="recipeStep--meta recipeStep--meta--icon-glow"><i class="icon icon-volume-up"></i> </span><% } %><% if (step.sms) { %><span class="recipeStep--meta recipeStep--meta--icon-glow"><i class="icon icon-envelope"></i> </span><% } %></p>
+							<p class="recipeStep--description"><%= step.description %></p>
+							<p class="recipeStep--summary">Summary: <%= step.summary %></p>
+						</div>
+					</div>
+				<% } %>
+			</div>
+		</div>
+<% } %>

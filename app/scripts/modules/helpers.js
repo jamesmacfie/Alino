@@ -5,8 +5,15 @@ define([
 	'underscore'],
 	function ($, _) {
 		return {
+			getIdFromTarget: function(target) {
+				var $target = $(target);
+				return $target.parents('.recipeStep').data('id');
+			},
 			brewInProgress: function() {
 				return window.Alino.activeRecipe;
+			},
+			setBrewInProgress: function(recipe) {
+				window.Alino.activeRecipe = recipe;
 			},
 			randomId: function() {
 				return Math.floor(Math.random() * 1000000);

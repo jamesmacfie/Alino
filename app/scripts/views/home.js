@@ -9,7 +9,6 @@ define([
 	'collections/recipes'
 ], function ($, _, Backbone, JST, Helpers, Recipes) {
 	var HomeView = Backbone.View.extend({
-		defaultTemplate: JST['app/scripts/templates/home.ejs'],
 		startTemplate: JST['app/scripts/templates/homeStart.ejs'],
 		selectTemplate: JST['app/scripts/templates/homeSelect.ejs'],
 		events: {
@@ -30,7 +29,7 @@ define([
 				}));
 				return;
 			}
-			this.$el.html(this.defaultTemplate());
+			Backbone.history.navigate('letsBrew', {trigger: true});
 		},
 		afterRender: function() {
 			Helpers.setTitleInfo({
