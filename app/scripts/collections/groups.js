@@ -11,22 +11,26 @@ define([
 		{
 			id: 1,
 			name: 'Pre-mash',
-			order: 1
+			order: 1,
+			timerDirection: 'up'
 		},
 		{
 			id: 2,
 			name: 'Mash',
-			order: 2
+			order: 2,
+			timerDirection: 'up'
 		},
 		{
 			id: 3,
 			name: 'Pre boil',
-			order: 3
+			order: 3,
+			timerDirection: 'up'
 		},
 		{
 			id: 4,
 			name: 'Boil',
-			order: 4
+			order: 4,
+			timerDirection: 'down'
 		}
 	];
 
