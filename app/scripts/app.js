@@ -6,10 +6,14 @@ define([
 	'underscore',
 	'backbone',
 	'router',
-], function($, _, Backbone, Router){
+	'controllers/brew'
+], function($, _, Backbone, Router, Brew){
 	var initialize = function(){
 		//Setup namespace
 		window.Alino = {};
+
+		//Setup access to currew brew controller
+		window.Alino.brew = Brew;
 
 		Router.initialize();
 		bindEvents();
@@ -18,9 +22,6 @@ define([
 	};
 
 	var bindEvents = function() {
-		//Setup global bus
-		Alino.bus = _.extend({}, Backbone.Events);
-
 		//Ensure anchor tags use the history API
 		$(document).on('click', 'a[href^="/"]', function(event) {
 			event.preventDefault();

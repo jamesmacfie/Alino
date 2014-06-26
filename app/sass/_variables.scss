@@ -65,6 +65,20 @@ $navigation-icon-margin: 15px 17px;
 /* Container */
 $container-padding: 10px;
 
+/* Current temp */
+$current-temp-font-size: 65px;
+$current-temp-bottom-padding: 30px;
+$current-temp-top-padding: 50px;
+
+$current-temp-hot-color: #f9472a;
+$current-temp-cold-color: #3da7de;
+$current-temp-ok-color: #61c227;
+
+/* Current time */
+$current-time-font-size: $current-temp-font-size;
+$current-time-bottom-padding: 30px;
+$current-time-top-padding: 50px;
+
 /* Panel */
 $panel-padding: $container-padding;
 $panel-bottom-margin: $container-padding;

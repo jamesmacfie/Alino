@@ -11,10 +11,11 @@ define([
 	var BrewView = Backbone.View.extend({
 		template: JST['app/scripts/templates/brew.ejs'],
 		events: {
-
+			'click .js-toggle-timer': 'onToggleTimerClickHandler',
+			'click .js-reset-timer': 'onResetTimerClickHandler'
 		},
 		initialize: function() {
-			var brew = Helpers.brewInProgress();
+			var brew = window.Alino.brew.getBrewInProgress();
 			// Just make sure the user has actully chosen something to brew
 			if (!brew)  {
 				Backbone.history.navigate('', {trigger: true});
@@ -69,6 +70,25 @@ define([
 				icon: 'home',
 				backgroundColor: 'blue'
 			});
+		},
+		setToggleTimerIcon: function(state) {
+			var $toggleButton = $('.js-toggle-timer'),
+				$toggleIcon = $toggleButton.find('i');
+
+			$toggleIcon.removeClass('icon-play icon-pause');
+			if (state) {
+				$toggleIcon.addClass('icon-pause');
+			} else {
+				$toggleIcon.addClass('icon-play');
+			}
+		},
+		onToggleTimerClickHandler: function(event) {
+			var state = window.Alino.brew.toggleTimer();
+			this.setToggleTimerIcon(state);
+		},
+		onResetTimerClickHandler: function() {
+			window.Alino.brew.setTimerState(false);
+			this.setToggleTimerIcon(false);
 		}
 	});
 

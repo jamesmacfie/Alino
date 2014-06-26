@@ -23,7 +23,7 @@ define([
 
 		},
 		render: function() {
-			if (!Helpers.brewInProgress()) {
+			if (!window.Alino.brew.getBrewInProgress()) {
 				this.$el.html(this.startTemplate({
 					recipeCount: Recipes.length
 				}));

@@ -62,7 +62,7 @@ define([
 			var id = Helpers.getIdFromTarget(event.currentTarget),
 				recipe = Recipes.get(id),
 				setBrew = function() {
-					Helpers.setBrewInProgress(recipe);
+					window.Alino.brew.setBrewInProgress(recipe);
 				},
 				replaceBrewPopup = new Popup('Replace the current recipe?',
 					'There\'s alread a recipe set as active. Are you sure you want to replace it?',
@@ -74,9 +74,9 @@ define([
 						this.destroy();
 					});
 
-			if (!Helpers.brewInProgress()) {
+			if (!window.Alino.brew.getBrewInProgress()) {
 				setBrew();
-				Backbone.history.navigate('', {trigger: true});
+				Backbone.history.navigate('letsBrew', {trigger: true});
 			} else {
 				replaceBrewPopup.show();
 			}
