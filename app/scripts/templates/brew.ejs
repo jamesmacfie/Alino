@@ -1,19 +1,23 @@
 <div class="panel">
 	<p><%= description %></p>
-	<button class="button-small button-spaced js-toggle-timer"><i class="icon icon-play"></i></button>
+	<button class="button-small button-spaced js-toggle-timer"><i class="icon icon-<%= timerActive ? 'pause' : 'play' %>"></i></button>
 	<button class="button-small button-spaced js-reset-timer"><i class="icon icon-refresh"></i></button>
 </div>
 
 <div class="panel">
-	<h3 class="panelTitle left"><i class="icon icon-time panelTitle--icon"></i>Timer</h3>
-	<h3 class="panelTitle right">Next: 10:00</h3>
-	<p class="currentTime">60:00</p>
+	<p class="recipeStep--title"><span class="iconHolder"><i class="icon icon-circle iconHolder--icon"></i><span class="iconHolder--iconText js-step-number">1</span></span>Some step name<span class="recipeStep--meta recipeStep--meta--icon-glow"><i class="icon icon-volume-up"></i> </span><span class="recipeStep--meta recipeStep--meta--icon-glow"><i class="icon icon-envelope"></i> </span></p>
 </div>
 
 <div class="panel">
 	<h3 class="panelTitle left"><i class="icon icon-temperature panelTitle--icon"></i>Temperature</h3>
 	<h3 class="panelTitle right">Desired: 100 &#186;C</h3>
 	<p class="currentTemp currentTemp-ok">--</p>
+</div>
+
+<div class="panel">
+	<h3 class="panelTitle left"><i class="icon icon-time panelTitle--icon"></i>Timer</h3>
+	<h3 class="panelTitle right">Next: 10:00</h3>
+	<p class="currentTime"><%= currentTime %></p>
 </div>
 
 <% for(var i=0;i<groups.length;i++) {

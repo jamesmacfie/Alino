@@ -22,9 +22,17 @@ define([
 			}
 
 			this.model = brew;
+
+			window.Alino.bus.on(
+				'timer:change',
+				this.render,
+				this
+			);
+
 		},
 		render: function() {
-			var recipe = this.model,
+			var brew = window.Alino.brew,
+				recipe = this.model,
 				stepFilter = function(groupId) {
 					return _.filter(recipe.get('steps'), function(step) {
 						return step.get('groupId') === groupId;
@@ -61,7 +69,9 @@ define([
 
 			this.$el.html(this.template({
 				description: this.model.get('description'),
-				groups: _.filter(_.map(Groups.models, groupMapper), groupFilter)
+				groups: _.filter(_.map(Groups.models, groupMapper), groupFilter),
+				timerActive: brew.getTimerState(),
+				currentTime: brew.getRemainingTime(true)
 			}));
 		},
 		afterRender: function() {
@@ -70,6 +80,13 @@ define([
 				icon: 'home',
 				backgroundColor: 'blue'
 			});
+		},
+		beforeClose: function() {
+			window.Alino.bus.off(
+				'timer:change',
+				this.render,
+				this
+			);
 		},
 		setToggleTimerIcon: function(state) {
 			var $toggleButton = $('.js-toggle-timer'),

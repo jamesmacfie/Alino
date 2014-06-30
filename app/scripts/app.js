@@ -15,6 +15,9 @@ define([
 		//Setup access to currew brew controller
 		window.Alino.brew = Brew;
 
+		//Global bus
+		window.Alino.bus = _.extend({}, Backbone.Events);
+		
 		Router.initialize();
 		bindEvents();
 

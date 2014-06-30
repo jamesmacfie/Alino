@@ -120,6 +120,9 @@ define([
 				returnVal = (temp -32) * (5/9);
 
 				return parseFloat(returnVal.toFixed(2));
+			},
+			padNumber: function(n) {
+				return (n < 10) ? ('0' + n) : n;
 			}
 		};
 	}
